@@ -14,5 +14,5 @@ sudo: false
 before_script:
   - npm run build
 
-before_script:
+script:
   - echo 'test is not specified'
