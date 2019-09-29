@@ -1,10 +1,10 @@
 # Kanban Board App
 
-![welcome-board](public/images/icons/icon-96x96.png)  
+![welcome-board](https://github.com/shellyln/kanban-board-app/blob/master/public/images/icons/icon-96x96.png)  
 
 Kanban style task management board app
 
-![welcome-board](docs/images/welcome-board.png)
+![welcome-board](https://github.com/shellyln/kanban-board-app/blob/master/docs/images/welcome-board.png)
 
 
 
@@ -36,16 +36,16 @@ Kanban style task management board app
 
 ### Kanban board view
 
-![welcome-board](docs/images/welcome-board.png)
-![welcome-board](docs/images/edit-dialog.png)
+![welcome-board](https://github.com/shellyln/kanban-board-app/blob/master/docs/images/welcome-board.png)
+![welcome-board](https://github.com/shellyln/kanban-board-app/blob/master/docs/images/edit-dialog.png)
 
 ### Calendar view
 
-![calendar](docs/images/calendar.png)
+![calendar](https://github.com/shellyln/kanban-board-app/blob/master/docs/images/calendar.png)
 
 ### Configuration editor view
 
-![calendar](docs/images/setting.png)
+![calendar](https://github.com/shellyln/kanban-board-app/blob/master/docs/images/setting.png)
 
 
 
