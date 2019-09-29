@@ -74,11 +74,19 @@ Kanban style task management board app
 git clone https://github.com/shellyln/kanban-board-app.git
 cd kanban-board
 npm ci
+
+vi package.json
+# and edit "homepage" entry. see https://create-react-app.dev/docs/deployment
+
+vi src/index.tsx
+# and enable "serviceWorker.register()" if you want.
+
 npm run build
 ```
 and deploy `./build/*` to your site.
 
-For more informations, see [README-scripts.md](https://github.com/shellyln/kanban-board-app/blob/master/README-scripts.md).
+For more informations, see [README-scripts.md](https://github.com/shellyln/kanban-board-app/blob/master/README-scripts.md) and
+[Create React App deployment docs](https://create-react-app.dev/docs/deployment).
 
 
 ## License
