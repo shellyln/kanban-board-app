@@ -1,0 +1,73 @@
+/* Copyright (c) 2019 Shellyl_N and Authors
+ * license: ISC
+ * https://github.com/shellyln
+ */
+
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --main-bg-color: #fff;
+        --main-text-color: #000;
+        --main-border-color: #000;
+        --weak-header-bg-color: #f8f8f8;
+        --weak-data-bg-color: #efefef;
+        --sticky-yellow-color: #fff5a3;
+        --sticky-green-color: #cfffcc;
+        --sticky-blue-color: #dbedff;
+        --sticky-red-color: #ffafaf;
+        --sticky-shadow-color: #888;
+        --sticky-tag-bg-color: #000;
+        --sticky-tag-text-color: #fff;
+        --calendar-sunday-color: #290e0e;
+        --calendar-saturday-color: #0a1520;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-bg-color: #424242;
+        --main-text-color: #fff;
+        --main-border-color: #d3d3d3;
+        --weak-header-bg-color: #4a4a4a;
+        --weak-data-bg-color: #4f4f4f;
+        --sticky-yellow-color: #25220d;
+        --sticky-green-color: #0b1f0a;
+        --sticky-blue-color: #0a1520;
+        --sticky-red-color: #290e0e;
+        --sticky-shadow-color: #1f1f1f;
+        --sticky-tag-bg-color: #fff;
+        --sticky-tag-text-color: #000;
+        --calendar-sunday-color: #ffafaf;
+        --calendar-saturday-color: #dbedff;
+    }
+}
+
+
+html {
+    height: 100%;
+    background-color: var(--main-bg-color);
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont,
+        'Hiragino Kaku Gothic ProN', meiryo,
+        'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--main-bg-color);
+}
+
+#root {
+    height: 100%;
+    margin: 0;
+    background-color: var(--main-bg-color);
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}

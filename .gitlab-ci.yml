@@ -1,0 +1,34 @@
+image: node:12
+
+before_script:
+  - npm ci
+
+#cache:
+#  paths:
+#    - node_modules/
+
+#test:lint:
+#  script:
+#    - npm run lint
+
+# LTS
+test:node:12:
+  script:
+    - npm run build
+
+test:node:11:
+  image: node:11
+  script:
+    - npm run build
+
+# LTS
+test:node:10:
+  image: node:10
+  script:
+    - npm run build
+
+# LTS
+test:node:8:
+  image: node:8
+  script:
+    - npm run build
