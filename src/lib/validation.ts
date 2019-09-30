@@ -171,7 +171,12 @@ export function pickEditableConfigProps(conf: AppConfig) {
                 conf.remote.user : '',
             password: conf.remote && conf.remote.password ?
                 conf.remote.password : '',
-        }
+        },
+        display: {
+            autoUpdate: !!(conf.display && conf.display.autoUpdate),
+            autoUpdateInterval: conf.display && conf.display.autoUpdateInterval ?
+                conf.display.autoUpdateInterval : 2419200,
+        },
     });
 }
 
@@ -188,6 +193,19 @@ export function validateConfigProps(conf: AppConfig) {
     }
     if (typeof conf.remote.password !== 'string') {
         throw new Error('string property "remote.password" is required.');
+    }
+
+    if (! conf.display) {
+        throw new Error('object property "display" is required.');
+    }
+    if (typeof conf.display.autoUpdate !== 'boolean') {
+        throw new Error('boolean property "display.autoUpdate" is required.');
+    }
+    if (typeof conf.display.autoUpdateInterval !== 'number') {
+        throw new Error('number property "display.autoUpdateInterval" is required.');
+    }
+    if (conf.display.autoUpdateInterval < 10) {
+        throw new Error('number property "display.autoUpdateInterval" should 10 <= autoUpdateInterval (unit: sec).');
     }
     return conf;
 }

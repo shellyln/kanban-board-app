@@ -27,12 +27,22 @@ export async function getAppEventsReducer() {
             include_docs: true,
         });
 
+        const defaultAppConfig = {
+            remote: {
+                endpointUrl: '',
+                user: '',
+                password: '',
+            },
+            display: {
+                autoUpdate: false,
+                autoUpdateInterval: 2419200,
+            },
+        };
+
         if (resp.rows.length === 0) {
             await confDb.post({
                 type: 'appConfig',
-                remoteDbUrl: '',
-                remoteDbUser: '',
-                remoteDbPassword: '',
+                ...defaultAppConfig,
             }, {});
 
             resp = await confDb.allDocs({
@@ -48,6 +58,7 @@ export async function getAppEventsReducer() {
                 onClose: () => void 0,
             },
             appConfig: {
+                ...defaultAppConfig,
                 ...resp.rows[0].doc,
             } as any,
         };
@@ -90,14 +101,11 @@ export async function getAppEventsReducer() {
             .case(appEventsActions.startUpdateAppConfig, (state, payload) => {
                 const newConf = Object.assign({}, state.appConfig,
                     payload.remote && payload.remote.endpointUrl ?
-                        payload :
-                        {
-                            remote: {
-                                endpointUrl: '',
-                                user: '',
-                                password: '',
-                            }
-                        },
+                        { remote: payload.remote } :
+                        { remote: defaultAppConfig.remote },
+                    payload.display ?
+                        { display: payload.display } :
+                        { display: defaultAppConfig.display }
                 );
 
                 confDb.put(newConf, {})
