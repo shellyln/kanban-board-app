@@ -54,6 +54,8 @@ function useInterval(callback: () => void, delay: number | null) {
         }
         if (delay !== null) {
             let id = setInterval(tick, delay);
+
+            // Clean up the timer when unmount or before re-calling.
             return () => clearInterval(id);
         }
 
@@ -65,12 +67,18 @@ function useInterval(callback: () => void, delay: number | null) {
 const App: React.FC<AppProps> = (props) => {
     const classes = useStyles();
 
-    useInterval(() => {
-        if (props.appConfig) {
-            console.log('periodic timer:' + new Date());
-            props.refreshActiveBoard();
-        }
-    }, 100000);
+    useInterval(
+        () => {
+            if (props.appConfig) {
+                console.log('periodic timer:' + new Date());
+                props.refreshActiveBoard();
+            }
+        },
+        props.appConfig && props.appConfig.display &&
+            props.appConfig.display.autoUpdate ?
+                (props.appConfig.display.autoUpdateInterval || 2419200) * 1000 :
+                null
+    );
 
     return (
         <div className={clsx(classes.app)}>
