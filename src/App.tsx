@@ -68,6 +68,7 @@ const App: React.FC<AppProps> = (props) => {
     useInterval(() => {
         if (props.appConfig) {
             console.log('periodic timer:' + new Date());
+            props.refreshActiveBoard();
         }
     }, 100000);
 

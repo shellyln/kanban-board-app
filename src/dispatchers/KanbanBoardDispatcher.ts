@@ -45,6 +45,9 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
         editBoardAndStikeys: (v: KanbanBoardRecord) =>
             dispatch(kanbanBoardActions.startEditBoardAndStikeys(v)),
 
+        refreshActiveBoard: () =>
+            dispatch(kanbanBoardActions.startRefreshActiveBoard({})),
+
         // from AppEventsActions
         showAlertDialog: (v: ConfirmDialogProps) =>
             dispatch(appEventsActions.showAlertDialog(v)),
