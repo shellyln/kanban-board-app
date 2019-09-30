@@ -2,7 +2,9 @@
 // license: ISC
 // https://github.com/shellyln
 
-import React                from 'react';
+import React,
+       { useEffect,
+         useRef }           from 'react';
 import { connect }          from 'react-redux';
 import { Route,
          Switch }           from "react-router-dom";
@@ -34,8 +36,40 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+function useInterval(callback: () => void, delay: number | null) {
+    const savedCallback = useRef() as React.MutableRefObject<any>;
+
+    // Remember the latest callback.
+    useEffect(() => {
+        savedCallback.current = callback;
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+        function tick() {
+            savedCallback.current();
+        }
+        if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+        }
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    }, [delay]);
+}
+
+
 const App: React.FC<AppProps> = (props) => {
     const classes = useStyles();
+
+    useInterval(() => {
+        if (props.appConfig) {
+            console.log('periodic timer:' + new Date());
+        }
+    }, 100000);
 
     return (
         <div className={clsx(classes.app)}>
