@@ -9,10 +9,13 @@ import { AppConfig,
          AppState }           from '../types';
 import { AppEventsActions as AppEventsActions_,
          appEventsActions }   from '../actions/AppEventsActions';
+import { KanbanBoardActions as KanbanBoardActions_,
+         kanbanBoardActions } from '../actions/KanbanBoardActions';
 
 
 
 export type AppEventsActions = AppEventsActions_;
+export type KanbanBoardActions = KanbanBoardActions_;
 
 
 export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
@@ -26,6 +29,10 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
             dispatch(appEventsActions.startUpdateAppConfig(v)),
         resetApplication: () =>
             dispatch(appEventsActions.startResetApplication()),
+
+        // from KanbanBoardActions
+        refreshActiveBoard: () =>
+            dispatch(kanbanBoardActions.startRefreshActiveBoard({})),
     }
 }
 

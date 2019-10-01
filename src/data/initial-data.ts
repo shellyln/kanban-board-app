@@ -36,6 +36,14 @@ table.KanbanBoardView-board td.status-done {
     color: white;
     background-color: red;
 }
+.KanbanBoardView-sticky-tags .tag-ok {
+    color: white;
+    background-color: green;
+}
+.KanbanBoardView-sticky-tags .tag-NG {
+    color: white;
+    background-color: #e91e63;
+}
 `;
 
 
@@ -89,6 +97,12 @@ export const initialData = {
         "tags": [{
             "value": "bug",
             "className": "tag-bug"
+        }, {
+            "value": "ok",
+            "className": "tag-ok"
+        }, {
+            "value": "NG",
+            "className": "tag-NG"
         }],
         "displayBarcode": true,
         "displayMemo": true,
@@ -105,7 +119,7 @@ export const initialData = {
             "# Welcome to the Kanban Board App!\n" +
             "* This is a kanban (or sticky).\n" +
             "* Write one task for one kanban.\n" +
-            "* To add a kanban to the board, click the “+” icon in the upper left corner of the board.\n" +
+            "* To add a kanban to the board, Tap or click the “+” icon in the upper left corner of the board.\n" +
             "* Tap or click on kanban to edit.\n" +
             "* Drag and drop the kanban to change the status.",
         "barcode": "",
@@ -175,7 +189,7 @@ export const initialData = {
         "barcode": "12345",
         "memo": "memo",
         "flags": ["Marked"],
-        "tags": ["PR", "bug"],
+        "tags": ["PR", "bug", "ok", "NG"],
         "boardId": "",
         "teamOrStory": "Team B",
         "taskStatus": "Staging"

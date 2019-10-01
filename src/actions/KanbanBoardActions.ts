@@ -36,6 +36,9 @@ export interface KanbanBoardActions {
     editBoardAndStikeys: (v: KanbanBoardRecord) =>
         Action<KanbanBoardRecord>;
 
+    refreshActiveBoard: () =>
+        Action<{}>;
+
     // from AppEventsActions
     showAlertDialog: (v: ConfirmDialogProps) =>
         Action<ConfirmDialogProps>;
@@ -69,6 +72,9 @@ const deleteStikey =
 
 const editBoardAndStikeys =
     actionCreator.async<KanbanBoardRecord, KanbanBoardState, Error>('ACTIONS_EDIT_BOARD_AND_STIKEYS');
+
+const refreshActiveBoard =
+    actionCreator.async<{}, KanbanBoardState, Error>('ACTIONS_REFRESH_ACTIVE_BOARD');
 
 
 export const kanbanBoardActions = {
@@ -111,4 +117,8 @@ export const kanbanBoardActions = {
     startEditBoardAndStikeys: editBoardAndStikeys.started,
     doneEditBoardAndStikeys: editBoardAndStikeys.done,
     failedEditBoardAndStikeys: editBoardAndStikeys.failed,
+
+    startRefreshActiveBoard: refreshActiveBoard.started,
+    doneRefreshActiveBoard: refreshActiveBoard.done,
+    failedRefreshActiveBoard: refreshActiveBoard.failed,
 };

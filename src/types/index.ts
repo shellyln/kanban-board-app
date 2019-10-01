@@ -84,9 +84,15 @@ export interface AppConfigRemoteSettings {
     password: string;
 }
 
+export interface AppConfigDisplaySettings {
+    autoUpdate: boolean;
+    autoUpdateInterval: number;
+}
+
 export interface AppConfigUserData {
     type: 'appConfig',
     remote: AppConfigRemoteSettings;
+    display: AppConfigDisplaySettings;
 }
 
 export type AppConfigDbRecord = DocumentWithContents & AppConfigUserData;

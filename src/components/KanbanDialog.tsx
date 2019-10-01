@@ -166,7 +166,7 @@ const KanbanDialog: React.FC<KanbanDialogProps> = (props) => {
                     <Button
                         className={clsx(classes.fabDelete)}
                         variant="outlined"
-                        color="default"
+                        color={props.board.preferArchive ? 'default' : 'secondary'}
                         onClick={handleArchiveOrDeleteClick} >
                         {props.board.preferArchive ? <ArchiveIcon /> : <DeleteIcon color="secondary" />}
                         <Typography variant="body1" color={props.board.preferArchive ? 'initial' : 'secondary'}

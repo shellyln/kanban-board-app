@@ -20,6 +20,10 @@ export interface AppEventsActions {
         Action<AppConfig>;
     resetApplication: () =>
         Action<void>;
+
+    // from KanbanBoardActions
+    refreshActiveBoard: () =>
+        Action<{}>;
 }
 
 

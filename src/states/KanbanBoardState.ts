@@ -740,6 +740,50 @@ export async function getKanbanBoardReducer() {
             .case(kanbanBoardActions.failedEditBoardAndStikeys, (state, arg) => {
                 return state;
             })
+
+            //// refreshActiveBoard async actions ////
+            .case(kanbanBoardActions.startRefreshActiveBoard, (state, payload) => {
+                (async () => {
+                    try {
+                        const board = await db.get<KanbanBoardRecord>(state.activeBoard._id, {});
+                        if (! board) {
+                            return state;
+                        }
+                        const records: KanbanRecord[] = (await db.find({selector: {
+                            type: 'kanban',
+                            boardId: board._id,
+                        }})).docs as any;
+
+                        board.records = records;
+                        const index = state.boards.findIndex(x => x._id === board._id);
+                        const boards = state.boards.slice(0, index).concat(
+                            [board],
+                            state.boards.slice(index + 1),
+                        );
+
+                        getConstructedAppStore().dispatch(kanbanBoardActions.doneRefreshActiveBoard({
+                            params: payload,
+                            result: Object.assign({}, state, {
+                                boards,
+                                activeBoardId: board._id,
+                                activeBoard: board,
+                            }),
+                        }));
+                    } catch (e) {
+                        getConstructedAppStore().dispatch(kanbanBoardActions.failedRefreshActiveBoard({
+                            params: payload,
+                            error: e,
+                        }));
+                    }
+                })();
+                return state;
+            })
+            .case(kanbanBoardActions.doneRefreshActiveBoard, (state, arg) => {
+                return arg.result;
+            })
+            .case(kanbanBoardActions.failedRefreshActiveBoard, (state, arg) => {
+                return state;
+            })
             ;
     }
     return kanbanBoardReducer;
