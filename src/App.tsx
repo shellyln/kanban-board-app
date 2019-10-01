@@ -13,6 +13,7 @@ import { makeStyles }       from '@material-ui/core/styles';
 import { ThemeProvider }    from '@material-ui/styles';
 import clsx                 from 'clsx';
 import { AppEventsState }   from './types';
+import { restartSync }      from './lib/db';
 import { theme }            from './lib/theme';
 import { mapDispatchToProps,
          mapStateToProps,
@@ -71,7 +72,13 @@ const App: React.FC<AppProps> = (props) => {
         () => {
             if (props.appConfig) {
                 console.log('periodic timer:' + new Date());
-                props.refreshActiveBoard();
+                restartSync()
+                .then(() => {
+                    props.refreshActiveBoard();
+                })
+                .catch(err => {
+                    console.log(err.message);
+                });
             }
         },
         props.appConfig && props.appConfig.display &&
