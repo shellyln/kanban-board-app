@@ -99,8 +99,8 @@ Tap or Click `Settings` menu item of drawer and edit YAML text.
 | `remote.endpointUrl`         | CouchDB / Cloudant `External Endpoint` URL w/ DB name. <br>e.g. `https://???-bluemix.cloudant.com/mydb` |
 | `remote.user`                | CouchDB / Cloudant `user name` or `API Key`                                                             |
 | `remote.password`            | CouchDB / Cloudant `password`                                                                           |
-| `display.autoUpdate`         |  |
-| `display.autoUpdateInterval` |  |
+| `display.autoUpdate`         | If true, periodic automatic update of the currently displayed board is enabled.                         |
+| `display.autoUpdateInterval` | Periodic automatic update interval in seconds.                                                          |
 
 
 ### Board Settings
@@ -108,32 +108,32 @@ Tap or Click `Editor` menu item of drawer and edit YAML text.
 
 | Key                          | Description |
 |------------------------------|-------------|
-| `name`                       |  |
-| `taskStatuses[i].value`      |  |
-| `taskStatuses[i].caption`    |  |
-| `taskStatuses[i].className`  |  |
-| `taskStatuses[i].completed`  |  |
-| `teamOrStories[i].value`     |  |
-| `teamOrStories[i].caption`   |  |
-| `teamOrStories[i].className` |  |
-| `tags[i].value`              |  |
-| `tags[i].className`          |  |
-| `displayBarcode`             |  |
-| `displayMemo`                |  |
-| `displayFlags`               |  |
-| `displayTags`                |  |
-| `preferArchive`              |  |
-| `boardStyle`                 |  |
-| `calendarStyle`              |  |
-| `records[i]._id`             |  |
-| `records[i].dueDate`         |  |
-| `records[i].taskStatus`      |  |
-| `records[i].teamOrStory`     |  |
-| `records[i].flags[j]`        |  |
-| `records[i].tags[j]`         |  |
-| `records[i].description`     |  |
-| `records[i].barcode`         |  |
-| `records[i].memo`            |  |
+| `name`                       | Board name |
+| `taskStatuses[i].value`      | Internal value for this status. |
+| `taskStatuses[i].caption`    | Caption for displaying this status. |
+| `taskStatuses[i].className`  | CSS clas name for this status. |
+| `taskStatuses[i].completed`  | If true, this status represents a completed task. |
+| `teamOrStories[i].value`     | Internal value for this lane. |
+| `teamOrStories[i].caption`   | Caption for displaying this lane. |
+| `teamOrStories[i].className` | CSS clas name for this lane. |
+| `tags[i].value`              | Internal value for this tag. |
+| `tags[i].className`          | CSS clas name for this tag. |
+| `displayBarcode`             | If true, displays the barcode (QR code) field of the kanban. |
+| `displayMemo`                | If true, displays the memo field of the kanban. |
+| `displayFlags`               | If true, displays the flags field of the kanban. |
+| `displayTags`                | If true, displays the tags field of the kanban. |
+| `preferArchive`              | If true, displays the `Archive` button in the kanban edit dialog instead of the `Delete` button. |
+| `boardStyle`                 | CSS styles for board view. |
+| `calendarStyle`              | CSS styles for calendar view. |
+| `records[i]._id`             | Id of the kanban record. |
+| `records[i].dueDate`         | Due date of the kanban record. |
+| `records[i].taskStatus`      | Task status internal value of the kanban record. |
+| `records[i].teamOrStory`     | Lane internal value of the kanban record. |
+| `records[i].flags[j]`        | Flags of the kanban record. (separate with commas) |
+| `records[i].tags[j]`         | Tags of the kanban record. (separate with commas) |
+| `records[i].description`     | Description of the kanban record. (Markdown syntax) |
+| `records[i].barcode`         | Barcode (QR code) value of the kanban record. |
+| `records[i].memo`            | Kanban record notes. This field is not displayed on the kanban. |
 
 
 
