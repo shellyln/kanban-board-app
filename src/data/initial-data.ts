@@ -105,7 +105,7 @@ export const initialData = {
             "# Welcome to the Kanban Board App!\n" +
             "* This is a kanban (or sticky).\n" +
             "* Write one task for one kanban.\n" +
-            "* To add a kanban to the board, click the “+” icon in the upper left corner of the board.\n" +
+            "* To add a kanban to the board, Tap or click the “+” icon in the upper left corner of the board.\n" +
             "* Tap or click on kanban to edit.\n" +
             "* Drag and drop the kanban to change the status.",
         "barcode": "",

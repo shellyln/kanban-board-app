@@ -89,6 +89,54 @@ For more informations, see [README-scripts.md](https://github.com/shellyln/kanba
 [Create React App deployment docs](https://create-react-app.dev/docs/deployment).
 
 
+
+## Settings
+### App Settings
+Tap or Click `Settings` menu item of drawer and edit YAML text.
+
+| Key                          | Description                                                                                             |
+|------------------------------|---------------------------------------------------------------------------------------------------------|
+| `remote.endpointUrl`         | CouchDB / Cloudant `External Endpoint` URL w/ DB name. <br>e.g. `https://???-bluemix.cloudant.com/mydb` |
+| `remote.user`                | CouchDB / Cloudant `user name` or `API Key`                                                             |
+| `remote.password`            | CouchDB / Cloudant `password`                                                                           |
+| `display.autoUpdate`         |  |
+| `display.autoUpdateInterval` |  |
+
+
+### Board Settings
+Tap or Click `Editor` menu item of drawer and edit YAML text.
+
+| Key                          | Description |
+|------------------------------|-------------|
+| `name`                       |  |
+| `taskStatuses[i].value`      |  |
+| `taskStatuses[i].caption`    |  |
+| `taskStatuses[i].className`  |  |
+| `taskStatuses[i].completed`  |  |
+| `teamOrStories[i].value`     |  |
+| `teamOrStories[i].caption`   |  |
+| `teamOrStories[i].className` |  |
+| `tags[i].value`              |  |
+| `tags[i].className`          |  |
+| `displayBarcode`             |  |
+| `displayMemo`                |  |
+| `displayFlags`               |  |
+| `displayTags`                |  |
+| `preferArchive`              |  |
+| `boardStyle`                 |  |
+| `calendarStyle`              |  |
+| `records[i]._id`             |  |
+| `records[i].dueDate`         |  |
+| `records[i].taskStatus`      |  |
+| `records[i].teamOrStory`     |  |
+| `records[i].flags[j]`        |  |
+| `records[i].tags[j]`         |  |
+| `records[i].description`     |  |
+| `records[i].barcode`         |  |
+| `records[i].memo`            |  |
+
+
+
 ## License
 [ISC](https://github.com/shellyln/kanban-board-app/blob/master/LICENSE.md)  
 Copyright (c) 2019 Shellyl_N and Authors.
