@@ -260,7 +260,7 @@ export const initialData = {
         "barcode": "",
         "memo": "",
         "flags": [],
-        "tags": ["ok", "merged", "v0.0.1", "feature-something"],
+        "tags": ["ok", "merged", "v0.0.1", "feature-something", "#1", "#2"],
         "boardId": "",
         "teamOrStory": "Team A",
         "taskStatus": "Done"
