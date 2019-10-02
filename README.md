@@ -72,7 +72,7 @@ Kanban style task management board app
 
 ```sh
 git clone https://github.com/shellyln/kanban-board-app.git
-cd kanban-board
+cd kanban-board-app
 npm ci
 
 vi package.json

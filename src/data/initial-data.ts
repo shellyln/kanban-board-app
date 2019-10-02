@@ -44,6 +44,10 @@ table.KanbanBoardView-board td.status-done {
     color: white;
     background-color: #e91e63;
 }
+.KanbanBoardView-sticky-tags .tag-PR {
+    color: white;
+    background-color: purple;
+}
 `;
 
 
@@ -103,6 +107,9 @@ export const initialData = {
         }, {
             "value": "NG",
             "className": "tag-NG"
+        }, {
+            "value": "PR",
+            "className": "tag-PR"
         }],
         "displayBarcode": true,
         "displayMemo": true,
@@ -253,7 +260,7 @@ export const initialData = {
         "barcode": "",
         "memo": "",
         "flags": [],
-        "tags": [],
+        "tags": ["ok", "merged", "v0.0.1", "feature-something"],
         "boardId": "",
         "teamOrStory": "Team A",
         "taskStatus": "Done"
