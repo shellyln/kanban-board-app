@@ -7,3 +7,6 @@
 div.CalendarView-item-chip.expired {
     background-color: var(--sticky-red-color);
 }
+div.CalendarView-item-chip.archived {
+    color: var(--weak-text-color);
+}

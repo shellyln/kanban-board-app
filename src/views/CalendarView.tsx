@@ -142,6 +142,7 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
     const dueDate = props.record.dueDate ? parseISODate(props.record.dueDate) : null;
     const expired = (! (taskStatus && taskStatus.completed)) &&
         (dueDate ? dueDate < today : false);
+    const archived = props.record.flags && props.record.flags.includes('Archived');
 
     function handleEditApply(rec: KanbanRecord) {
         props.updateStikey(rec);
@@ -171,7 +172,8 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
                 <div className={clsx(classes.chip) + ' CalendarView-item-chip' +
                     (teamOrStory ? ' ' + teamOrStory.className : '') +
                     (taskStatus ? ' ' + taskStatus.className : '') +
-                    (expired ? ' expired' : '')}>
+                    (expired ? ' expired' : '') +
+                    (archived ? ' archived' : '')}>
                     {props.record.description.trim().replace(/\n/g, ' ').replace(/#+/g, '').trim()}
                 </div>
             </a>
@@ -279,9 +281,6 @@ const CalendarView: React.FC<CalendarViewProps> = (props) => {
     }
 
     const stikeys = props.kanbanBoardState.activeBoard.records.filter(x => {
-        if (x.flags && x.flags.includes('Archived')) {
-            return false;
-        }
         if (!x.dueDate) {
             return false;
         }

@@ -8,6 +8,7 @@
     :root {
         --main-bg-color: #fff;
         --main-text-color: #000;
+        --weak-text-color: #777;
         --main-border-color: #000;
         --weak-header-bg-color: #f8f8f8;
         --weak-data-bg-color: #efefef;
@@ -27,6 +28,7 @@
     :root {
         --main-bg-color: #424242;
         --main-text-color: #fff;
+        --weak-text-color: #777;
         --main-border-color: #d3d3d3;
         --weak-header-bg-color: #4a4a4a;
         --weak-data-bg-color: #4f4f4f;
