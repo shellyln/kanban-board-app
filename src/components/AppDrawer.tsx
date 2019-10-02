@@ -26,6 +26,7 @@ import ListItem               from '@material-ui/core/ListItem';
 import ListItemIcon           from '@material-ui/core/ListItemIcon';
 import ListItemText           from '@material-ui/core/ListItemText';
 import { makeStyles }         from '@material-ui/core/styles';
+import useMediaQuery          from '@material-ui/core/useMediaQuery';
 import clsx                   from 'clsx';
 import { KanbanBoardState }   from '../types';
 import { mapDispatchToProps,
@@ -83,6 +84,7 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
         onClose: handleCloseDialogAddNewBoard,
     });
     const [boardsOpen, setBoardsOpen] = React.useState(true);
+    const matchesPrint = useMediaQuery('print');
 
     function handleDrawerToggle() {
         setOpen(!open);
@@ -142,107 +144,110 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
 
     return (
         <>
-            <Drawer
-                variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
+            {!matchesPrint ?
+                <Drawer
+                    variant="permanent"
+                    className={clsx(classes.drawer, {
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
-                    }),
-                }}
-                anchor="left"
-                open={open}
-                >
-                <div className={''}>
-                    <IconButton onClick={handleDrawerToggle}>
-                        {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                {open ?
-                    <>
-                        <List
-                            component="nav"
-                            aria-labelledby="nested-list-subheader"
-                            subheader={
-                                <ListSubheader component="div" id="nested-list-subheader">
-                                    Boards
-                                </ListSubheader>
-                            }>
+                    })}
+                    classes={{
+                        paper: clsx({
+                            [classes.drawerOpen]: open,
+                            [classes.drawerClose]: !open,
+                        }),
+                    }}
+                    anchor="left"
+                    open={open}
+                    >
+                    <div className={''}>
+                        <IconButton onClick={handleDrawerToggle}>
+                            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    {open ?
+                        <>
+                            <List
+                                component="nav"
+                                aria-labelledby="nested-list-subheader"
+                                subheader={
+                                    <ListSubheader component="div" id="nested-list-subheader">
+                                        Boards
+                                    </ListSubheader>
+                                }>
+                                <ListItem button
+                                    onClick={handleBoardsOpenClick}>
+                                    {boardsOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                </ListItem>
+                                <Collapse in={boardsOpen} timeout="auto" unmountOnExit>
+                                    <List component="div" disablePadding>
+                                        {props.boards.map(x =>
+                                            <ListItem button
+                                                    key={x._id}
+                                                    selected={x._id === props.activeBoardId}
+                                                    className={clsx(classes.nested)}
+                                                    style={{fontWeight: x._id === props.activeBoardId ? 'bold' : 'normal'}}
+                                                    onClick={ev => handleClickChangeActiveBoard(x._id)} >
+                                                <ListItemText
+                                                    primary={x.name} />
+                                            </ListItem>
+                                        )}
+                                    </List>
+                                </Collapse>
+                            </List>
                             <ListItem button
-                                onClick={handleBoardsOpenClick}>
-                                {boardsOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                onClick={handleClickAddNewBoard}>
+                                <ListItemIcon><AddBoxIcon /></ListItemIcon>
+                                <ListItemText primary="New board..." />
                             </ListItem>
-                            <Collapse in={boardsOpen} timeout="auto" unmountOnExit>
-                                <List component="div" disablePadding>
-                                    {props.boards.map(x =>
-                                        <ListItem button
-                                                key={x._id}
-                                                selected={x._id === props.activeBoardId}
-                                                className={clsx(classes.nested)}
-                                                style={{fontWeight: x._id === props.activeBoardId ? 'bold' : 'normal'}}
-                                                onClick={ev => handleClickChangeActiveBoard(x._id)} >
-                                            <ListItemText
-                                                primary={x.name} />
-                                        </ListItem>
-                                    )}
-                                </List>
-                            </Collapse>
-                        </List>
+                            <Divider />
+                        </> :
+                        <></>
+                    }
+                    <List>
+                        {/* settings */}
                         <ListItem button
-                            onClick={handleClickAddNewBoard}>
-                            <ListItemIcon><AddBoxIcon /></ListItemIcon>
-                            <ListItemText primary="New board..." />
+                                selected={currentView === 'kanban' || currentView === ''}
+                                onClick={ev => handleChangeView('kanban', props.activeBoardId)}>
+                            <ListItemIcon><TableChartIcon /></ListItemIcon>
+                            {open ? <ListItemText primary="Kanban" /> : <></>}
                         </ListItem>
-                        <Divider />
-                    </> :
-                    <></>
-                }
-                <List>
-                    {/* settings */}
-                    <ListItem button
-                            selected={currentView === 'kanban' || currentView === ''}
-                            onClick={ev => handleChangeView('kanban', props.activeBoardId)}>
-                        <ListItemIcon><TableChartIcon /></ListItemIcon>
-                        {open ? <ListItemText primary="Kanban" /> : <></>}
-                    </ListItem>
-                    <ListItem button
-                            selected={currentView === 'calendar'}
-                            onClick={ev => handleChangeView('calendar', props.activeBoardId)}>
-                        <ListItemIcon><CalendarTodayIcon /></ListItemIcon>
-                        {open ? <ListItemText primary="Calendar" /> : <></>}
-                    </ListItem>
-                    <ListItem button
-                            selected={currentView === 'edit'}
-                            onClick={ev => handleChangeView('edit', props.activeBoardId)}>
-                        <ListItemIcon><EditIcon /></ListItemIcon>
-                        {open ? <ListItemText primary="Editor" /> : <></>}
-                    </ListItem>
-                </List>
-                {open ?
-                    <>
-                        <Divider />
                         <ListItem button
-                                selected={currentView === 'config'}
-                                onClick={ev => props.history.push(`/config/`)}>
-                            <ListItemIcon><SettingsIcon /></ListItemIcon>
-                            {open ? <ListItemText primary="Settings" /> : <></>}
+                                selected={currentView === 'calendar'}
+                                onClick={ev => handleChangeView('calendar', props.activeBoardId)}>
+                            <ListItemIcon><CalendarTodayIcon /></ListItemIcon>
+                            {open ? <ListItemText primary="Calendar" /> : <></>}
                         </ListItem>
-                        <List>
+                        <ListItem button
+                                selected={currentView === 'edit'}
+                                onClick={ev => handleChangeView('edit', props.activeBoardId)}>
+                            <ListItemIcon><EditIcon /></ListItemIcon>
+                            {open ? <ListItemText primary="Editor" /> : <></>}
+                        </ListItem>
+                    </List>
+                    {open ?
+                        <>
+                            <Divider />
                             <ListItem button
-                                    onClick={ev => window.open('https://shellyln.github.io/', '_blank')}>
-                                <ListItemIcon><HelpIcon /></ListItemIcon>
-                                {open ? <ListItemText primary="Help" /> : <></>}
+                                    selected={currentView === 'config'}
+                                    onClick={ev => props.history.push(`/config/`)}>
+                                <ListItemIcon><SettingsIcon /></ListItemIcon>
+                                {open ? <ListItemText primary="Settings" /> : <></>}
                             </ListItem>
-                        </List>
-                    </> :
-                    <></>
-                }
-            </Drawer>
+                            <List>
+                                <ListItem button
+                                        onClick={ev => window.open('https://shellyln.github.io/', '_blank')}>
+                                    <ListItemIcon><HelpIcon /></ListItemIcon>
+                                    {open ? <ListItemText primary="Help" /> : <></>}
+                                </ListItem>
+                            </List>
+                        </> :
+                        <></>
+                    }
+                </Drawer> :
+                <></>
+            }
             {textInputOpen.open ?
                 <TextInputDialog
                     open={true}
