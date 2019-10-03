@@ -636,17 +636,17 @@ export async function getKanbanBoardReducer() {
 
                         const change = Object.assign({}, state.boards[index], {
                             name: payload.name || 'Untitled',
-                            taskStatuses: payload.taskStatuses || initialState.activeBoard.taskStatuses,
-                            teamOrStories: payload.teamOrStories || initialState.activeBoard.teamOrStories,
+                            taskStatuses: payload.taskStatuses || initialData.boards[0].taskStatuses,
+                            teamOrStories: payload.teamOrStories || initialData.boards[0].teamOrStories,
                             tags: payload.tags || initialState.activeBoard.tags,
                             displayBarcode: !!payload.displayBarcode,
                             displayMemo: !!payload.displayMemo,
                             displayFlags: !!payload.displayFlags,
                             displayTags: !!payload.displayTags,
                             preferArchive: !!payload.preferArchive,
-                            boardStyle: payload.boardStyle || initialState.activeBoard.boardStyle,
-                            calendarStyle: payload.calendarStyle || initialState.activeBoard.calendarStyle,
-                            boardNote: payload.boardNote || initialState.activeBoard.boardNote,
+                            boardStyle: payload.boardStyle || '',
+                            calendarStyle: payload.calendarStyle || '',
+                            boardNote: payload.boardNote || '',
                         });
 
                         const v = await db.put(change, {});
