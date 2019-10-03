@@ -18,7 +18,8 @@ import { restartSync,
          getLocalDb }             from '../lib/db';
 import { formatDate }             from '../lib/datetime';
 import { getConstructedAppStore } from '../store';
-import { initialData }            from '../data/initial-data';
+import { initialData,
+         boardNote }              from '../data/initial-data';
 
 
 
@@ -39,7 +40,7 @@ export async function getKanbanBoardReducer() {
             const data: KanbanBoardInitialData = initialData as any;
 
             const postRespBoards = await db.bulkDocs([
-                ...data.boards,
+                ...data.boards.map(x => Object.assign({}, x, { boardNote })),
             ], {});
 
             const now = new Date();
@@ -94,6 +95,7 @@ export async function getKanbanBoardReducer() {
                     preferArchive: data.boards[0].preferArchive,
                     boardStyle: data.boards[0].boardStyle,
                     calendarStyle: data.boards[0].calendarStyle,
+                    boardNote: data.boards[0].boardNote,
                 };
                 db.post(board, {})
                 .then(v => {
@@ -644,6 +646,7 @@ export async function getKanbanBoardReducer() {
                             preferArchive: !!payload.preferArchive,
                             boardStyle: payload.boardStyle || initialState.activeBoard.boardStyle,
                             calendarStyle: payload.calendarStyle || initialState.activeBoard.calendarStyle,
+                            boardNote: payload.boardNote || initialState.activeBoard.boardNote,
                         });
 
                         const v = await db.put(change, {});

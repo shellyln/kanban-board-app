@@ -35,6 +35,7 @@ export function pickEditableBoardProps(board: KanbanBoardRecord) {
         preferArchive: !!board.preferArchive,
         boardStyle: board.boardStyle || '',
         calendarStyle: board.calendarStyle || '',
+        boardNote: board.boardNote || '',
         records: (board.records && board.records.map(x => pickEditableStickyProps(x))) || [],
     });
 }
@@ -150,6 +151,9 @@ export function validateBoardProps(board: KanbanBoardRecord) {
     }
     if (typeof board.calendarStyle !== 'string') {
         throw new Error('string property "calendarStyle" is required.');
+    }
+    if (typeof board.boardNote !== 'string') {
+        throw new Error('string property "boardNote" is required.');
     }
 
     if (board.records && Array.isArray(board.records)) {

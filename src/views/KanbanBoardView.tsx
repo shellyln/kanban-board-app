@@ -329,6 +329,12 @@ const KanbanBoardView: React.FC<KanbanBoardViewProps> = (props) => {
                     ))}
                 </tbody>
             </table>
+            {props.activeBoard.boardNote ?
+                <div className="KanbanBoardView-board-note-wrap">
+                    <div className="KanbanBoardView-board-note" dangerouslySetInnerHTML={{__html : marked(props.activeBoard.boardNote)}} />
+                </div> :
+                <></>
+            }
             {textInputOpen.open ?
                 <TextInputDialog
                     open={true}

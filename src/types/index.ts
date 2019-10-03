@@ -62,6 +62,7 @@ export interface KanbanBoardDbRecordUserData {
     preferArchive: boolean,
     boardStyle: string;
     calendarStyle: string;
+    boardNote: string;
 };
 
 export type KanbanBoardDbRecord = DocumentWithContents & KanbanBoardDbRecordUserData;

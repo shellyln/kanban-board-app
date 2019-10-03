@@ -125,6 +125,7 @@ Tap or Click `Editor` menu item of drawer and edit YAML text.
 | `preferArchive`              | If true, displays the `Archive` button in the kanban edit dialog instead of the `Delete` button. |
 | `boardStyle`                 | CSS styles for board view. |
 | `calendarStyle`              | CSS styles for calendar view. |
+| `boardNote`                  | Board note |
 | `records[i]._id`             | Id of the kanban record. |
 | `records[i].dueDate`         | Due date of the kanban record. |
 | `records[i].taskStatus`      | Task status internal value of the kanban record. |

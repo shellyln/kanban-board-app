@@ -166,3 +166,57 @@ table.KanbanBoardView-board .KanbanBoardView-sticky-note.expired {
 table.KanbanBoardView-board thead th:nth-of-type(1) {
     width: 1px;
 }
+.KanbanBoardView-board-note-wrap {
+    font-size: 0.85rem;
+}
+.KanbanBoardView-board-note {
+    margin: 10px auto;
+    width: 95%;
+}
+.KanbanBoardView-board-note h1 {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.95rem;
+}
+.KanbanBoardView-board-note h2 {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.925rem;
+}
+.KanbanBoardView-board-note h3 {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.9rem;
+}
+.KanbanBoardView-board-note h4 {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.875rem;
+}
+.KanbanBoardView-board-note h5 {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.875rem;
+}
+.KanbanBoardView-board-note h6 {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.85rem;
+}
+.KanbanBoardView-board-note p {
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    font-size: 0.85rem;
+}
+.KanbanBoardView-board-note a {
+    color: var(--main-text-color);
+}
+.KanbanBoardView-board-note img {
+    width: 100%;
+}
+.KanbanBoardView-board-note ul {
+    padding-inline-start: 1em;
+    margin-inline-start: 0em;
+    margin-block-start: inherit;
+    margin-block-end: inherit;
+}

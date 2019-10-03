@@ -67,6 +67,12 @@ div.CalendarView-item-chip.status-done {
 `;
 
 
+export const boardNote =
+`# This is a board note.
+* Markdown syntax is available.
+* Go [Editor](#/edit/) to edit this note.`;
+
+
 export const initialData = {
     "boards": [{
         "type": "kanbanBoard",
@@ -137,7 +143,8 @@ export const initialData = {
         "displayTags": true,
         "preferArchive": false,
         "boardStyle": boardStyle,
-        "calendarStyle": calendarStyle
+        "calendarStyle": calendarStyle,
+        "boardNote": "",
     }],
     "records": [{
         "type": "kanban",
