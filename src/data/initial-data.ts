@@ -48,6 +48,10 @@ table.KanbanBoardView-board td.status-done {
     color: white;
     background-color: purple;
 }
+.KanbanBoardView-sticky-tags .tag-rejected {
+    color: white;
+    background-color: #990000;
+}
 `;
 
 
@@ -110,6 +114,9 @@ export const initialData = {
         }, {
             "value": "PR",
             "className": "tag-PR"
+        }, {
+            "value": "rejected",
+            "className": "tag-rejected"
         }],
         "displayBarcode": true,
         "displayMemo": true,
@@ -196,7 +203,7 @@ export const initialData = {
         "barcode": "12345",
         "memo": "memo",
         "flags": ["Marked"],
-        "tags": ["PR", "bug", "ok", "NG"],
+        "tags": ["PR", "bug", "ok", "NG", "rejected"],
         "boardId": "",
         "teamOrStory": "Team B",
         "taskStatus": "Staging"
