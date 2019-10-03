@@ -79,7 +79,7 @@ const EditorView: React.FC<EditorViewProps> = (props) => {
             const data = jsYaml.safeLoad(editorValue);
             if (data) {
                 validateBoardProps(data);
-                props.editBoardAndStikeys(Object.assign({}, data, { _id: props.activeBoard._id }));
+                props.editBoardAndStickys(Object.assign({}, data, { _id: props.activeBoard._id }));
             } else {
                 //
             }

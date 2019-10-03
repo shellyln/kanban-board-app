@@ -7,7 +7,7 @@ import actionCreatorFactory,
 import { KanbanBoardState,
          KanbanBoardRecord,
          KanbanRecord,
-         UpdateStikeyLanesPayload,
+         UpdateStickyLanesPayload,
          ConfirmDialogProps }      from '../types';
 
 
@@ -22,18 +22,18 @@ export interface KanbanBoardActions {
     deleteBoard: (id: string) =>
         Action<{boardId: string}>;
 
-    addStikey: () =>
+    addSticky: () =>
         Action<{}>;
-    updateStikey: (v: KanbanRecord) =>
+    updateSticky: (v: KanbanRecord) =>
         Action<KanbanRecord>;
-    updateStikeyLanes: (v: UpdateStikeyLanesPayload) =>
-        Action<UpdateStikeyLanesPayload>;
-    archiveStikey: (kanbanId: string) =>
+    updateStickyLanes: (v: UpdateStickyLanesPayload) =>
+        Action<UpdateStickyLanesPayload>;
+    archiveSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
-    deleteStikey: (kanbanId: string) =>
+    deleteSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
 
-    editBoardAndStikeys: (v: KanbanBoardRecord) =>
+    editBoardAndStickys: (v: KanbanBoardRecord) =>
         Action<KanbanBoardRecord>;
 
     refreshActiveBoard: () =>
@@ -59,19 +59,19 @@ const updateBoardName =
 const deleteBoard =
     actionCreator.async<{boardId: string}, KanbanBoardState, Error>('ACTIONS_DELETE_BOARD');
 
-const addStikey =
-    actionCreator.async<{}, KanbanBoardState, Error>('ACTIONS_ADD_STIKEY');
-const updateStikey =
-    actionCreator.async<KanbanRecord, KanbanBoardState, Error>('ACTIONS_UPDATE_STIKEY');
-const updateStikeyLanes =
-    actionCreator.async<UpdateStikeyLanesPayload, KanbanBoardState, Error>('ACTIONS_UPDATE_STIKEY_LANES');
-const archiveStikey =
-    actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_ARCHIVE_STIKEY');
-const deleteStikey =
-    actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_DELETE_STIKEY');
+const addSticky =
+    actionCreator.async<{}, KanbanBoardState, Error>('ACTIONS_ADD_STICKY');
+const updateSticky =
+    actionCreator.async<KanbanRecord, KanbanBoardState, Error>('ACTIONS_UPDATE_STICKY');
+const updateStickyLanes =
+    actionCreator.async<UpdateStickyLanesPayload, KanbanBoardState, Error>('ACTIONS_UPDATE_STICKY_LANES');
+const archiveSticky =
+    actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_ARCHIVE_STICKY');
+const deleteSticky =
+    actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_DELETE_STICKY');
 
-const editBoardAndStikeys =
-    actionCreator.async<KanbanBoardRecord, KanbanBoardState, Error>('ACTIONS_EDIT_BOARD_AND_STIKEYS');
+const editBoardAndStickys =
+    actionCreator.async<KanbanBoardRecord, KanbanBoardState, Error>('ACTIONS_EDIT_BOARD_AND_STICKYS');
 
 const refreshActiveBoard =
     actionCreator.async<{}, KanbanBoardState, Error>('ACTIONS_REFRESH_ACTIVE_BOARD');
@@ -94,29 +94,29 @@ export const kanbanBoardActions = {
     doneDeleteBoard: deleteBoard.done,
     failedDeleteBoard: deleteBoard.failed,
 
-    startAddStikey: addStikey.started,
-    doneAddStikey: addStikey.done,
-    failedAddStikey: addStikey.failed,
+    startAddSticky: addSticky.started,
+    doneAddSticky: addSticky.done,
+    failedAddSticky: addSticky.failed,
 
-    startUpdateStikey: updateStikey.started,
-    doneUpdateStikey: updateStikey.done,
-    failedUpdateStikey: updateStikey.failed,
+    startUpdateSticky: updateSticky.started,
+    doneUpdateSticky: updateSticky.done,
+    failedUpdateSticky: updateSticky.failed,
 
-    startUpdateStikeyLanes: updateStikeyLanes.started,
-    doneUpdateStikeyLanes: updateStikeyLanes.done,
-    failedUpdateStikeyLanes: updateStikeyLanes.failed,
+    startUpdateStickyLanes: updateStickyLanes.started,
+    doneUpdateStickyLanes: updateStickyLanes.done,
+    failedUpdateStickyLanes: updateStickyLanes.failed,
 
-    startArchiveStikey: archiveStikey.started,
-    doneArchiveStikey: archiveStikey.done,
-    failedArchiveStikey: archiveStikey.failed,
+    startArchiveSticky: archiveSticky.started,
+    doneArchiveSticky: archiveSticky.done,
+    failedArchiveSticky: archiveSticky.failed,
 
-    startDeleteStikey: deleteStikey.started,
-    doneDeleteStikey: deleteStikey.done,
-    failedDeleteStikey: deleteStikey.failed,
+    startDeleteSticky: deleteSticky.started,
+    doneDeleteSticky: deleteSticky.done,
+    failedDeleteSticky: deleteSticky.failed,
 
-    startEditBoardAndStikeys: editBoardAndStikeys.started,
-    doneEditBoardAndStikeys: editBoardAndStikeys.done,
-    failedEditBoardAndStikeys: editBoardAndStikeys.failed,
+    startEditBoardAndStickys: editBoardAndStickys.started,
+    doneEditBoardAndStickys: editBoardAndStickys.done,
+    failedEditBoardAndStickys: editBoardAndStickys.failed,
 
     startRefreshActiveBoard: refreshActiveBoard.started,
     doneRefreshActiveBoard: refreshActiveBoard.done,

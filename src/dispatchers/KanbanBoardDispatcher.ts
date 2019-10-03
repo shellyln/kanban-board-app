@@ -6,7 +6,7 @@ import { Action }             from 'typescript-fsa';
 import { Dispatch }           from 'redux';
 import { KanbanBoardRecord,
          KanbanRecord,
-         UpdateStikeyLanesPayload,
+         UpdateStickyLanesPayload,
          ConfirmDialogProps,
          AppState }           from '../types';
 import { AppEventsActions as AppEventsActions_,
@@ -31,19 +31,19 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
         deleteBoard: (boardId: string) =>
             dispatch(kanbanBoardActions.startDeleteBoard({ boardId })),
 
-        addStikey: () =>
-            dispatch(kanbanBoardActions.startAddStikey({})),
-        updateStikey: (v: KanbanRecord) =>
-            dispatch(kanbanBoardActions.startUpdateStikey(v)),
-        updateStikeyLanes: (v: UpdateStikeyLanesPayload) =>
-            dispatch(kanbanBoardActions.startUpdateStikeyLanes(v)),
-        archiveStikey: (kanbanId: string) =>
-            dispatch(kanbanBoardActions.startArchiveStikey({ kanbanId })),
-        deleteStikey: (kanbanId: string) =>
-            dispatch(kanbanBoardActions.startDeleteStikey({ kanbanId })),
+        addSticky: () =>
+            dispatch(kanbanBoardActions.startAddSticky({})),
+        updateSticky: (v: KanbanRecord) =>
+            dispatch(kanbanBoardActions.startUpdateSticky(v)),
+        updateStickyLanes: (v: UpdateStickyLanesPayload) =>
+            dispatch(kanbanBoardActions.startUpdateStickyLanes(v)),
+        archiveSticky: (kanbanId: string) =>
+            dispatch(kanbanBoardActions.startArchiveSticky({ kanbanId })),
+        deleteSticky: (kanbanId: string) =>
+            dispatch(kanbanBoardActions.startDeleteSticky({ kanbanId })),
 
-        editBoardAndStikeys: (v: KanbanBoardRecord) =>
-            dispatch(kanbanBoardActions.startEditBoardAndStikeys(v)),
+        editBoardAndStickys: (v: KanbanBoardRecord) =>
+            dispatch(kanbanBoardActions.startEditBoardAndStickys(v)),
 
         refreshActiveBoard: () =>
             dispatch(kanbanBoardActions.startRefreshActiveBoard({})),

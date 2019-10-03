@@ -45,12 +45,12 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
             dispatch(kanbanBoardActions.startChangeActiveBoard(Object.assign({}, { boardId }, { dispatch }))),
         updateBoardName: (v: {boardId: string, boardName: string}) =>
             dispatch(kanbanBoardActions.startUpdateBoardName(v)),
-        updateStikey: (v: KanbanRecord) =>
-            dispatch(kanbanBoardActions.startUpdateStikey(Object.assign({}, v, { dispatch }))),
-        archiveStikey: (kanbanId: string) =>
-            dispatch(kanbanBoardActions.startArchiveStikey({ kanbanId })),
-        deleteStikey: (kanbanId: string) =>
-            dispatch(kanbanBoardActions.startDeleteStikey(Object.assign({}, { kanbanId }, { dispatch }))),
+        updateSticky: (v: KanbanRecord) =>
+            dispatch(kanbanBoardActions.startUpdateSticky(Object.assign({}, v, { dispatch }))),
+        archiveSticky: (kanbanId: string) =>
+            dispatch(kanbanBoardActions.startArchiveSticky({ kanbanId })),
+        deleteSticky: (kanbanId: string) =>
+            dispatch(kanbanBoardActions.startDeleteSticky(Object.assign({}, { kanbanId }, { dispatch }))),
     }
 }
 

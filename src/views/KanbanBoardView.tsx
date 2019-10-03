@@ -31,7 +31,7 @@ import                                 './KanbanBoardView.css';
 
 
 
-type StikeysProps = KanbanBoardActions & {
+type StickysProps = KanbanBoardActions & {
     records: KanbanRecord[],
     taskStatus: StatusLaneDef,
     teamOrStory: LaneDef,
@@ -40,7 +40,7 @@ type StikeysProps = KanbanBoardActions & {
     board: KanbanBoardRecord,
 };
 
-type StikeyProps = KanbanBoardActions & {
+type StickyProps = KanbanBoardActions & {
     record: KanbanRecord,
     taskStatus: StatusLaneDef,
     teamOrStory: LaneDef,
@@ -68,7 +68,7 @@ const agent = window.navigator.userAgent.toLowerCase();
 const firefox = (agent.indexOf('firefox') !== -1);
 
 
-const Stikey_: React.FC<StikeyProps> = (props) => {
+const Sticky_: React.FC<StickyProps> = (props) => {
     const [open, setOpen] = React.useState(false);
 
     const now = new Date();
@@ -82,17 +82,17 @@ const Stikey_: React.FC<StikeyProps> = (props) => {
     }
 
     function handleEditApply(rec: KanbanRecord) {
-        props.updateStikey(rec);
+        props.updateSticky(rec);
         setOpen(false);
     }
 
     function handleArchive(id: string) {
-        props.archiveStikey(id);
+        props.archiveSticky(id);
         setOpen(false);
     }
 
     function handleDelete(id: string) {
-        props.deleteStikey(id);
+        props.deleteSticky(id);
         setOpen(false);
     }
 
@@ -164,10 +164,10 @@ const Stikey_: React.FC<StikeyProps> = (props) => {
         </>
     );
 }
-const Stikey = connect(mapNeverStateToProps, mapDispatchToProps)(Stikey_);
+const Sticky = connect(mapNeverStateToProps, mapDispatchToProps)(Sticky_);
 
 
-const Stikeys_: React.FC<StikeysProps> = (props) => {
+const Stickys_: React.FC<StickysProps> = (props) => {
     function handleOnDragOver(ev: React.DragEvent) {
         ev.preventDefault();
     }
@@ -176,7 +176,7 @@ const Stikeys_: React.FC<StikeysProps> = (props) => {
         try {
             const elId = ev.dataTransfer.getData('elId');
             const el = document.getElementById(elId);
-            props.updateStikeyLanes({
+            props.updateStickyLanes({
                 kanbanId: (el as any).dataset.recordId,
                 taskStatusValue: props.taskStatus.value,
                 teamOrStoryValue: props.teamOrStory.value,
@@ -199,7 +199,7 @@ const Stikeys_: React.FC<StikeysProps> = (props) => {
             onDrop={handleOnDrop}
             >
             {props.records.filter(x => !x.flags || !x.flags.includes('Archived')).map(record => (
-                <Stikey
+                <Sticky
                     key={record._id || gensym()}
                     teamOrStory={props.teamOrStory}
                     taskStatus={props.taskStatus}
@@ -214,7 +214,7 @@ const Stikeys_: React.FC<StikeysProps> = (props) => {
         </div>
     );
 }
-const Stikeys = connect(mapNeverStateToProps, mapDispatchToProps)(Stikeys_);
+const Stickys = connect(mapNeverStateToProps, mapDispatchToProps)(Stickys_);
 
 
 const KanbanBoardView: React.FC<KanbanBoardViewProps> = (props) => {
@@ -285,9 +285,9 @@ const KanbanBoardView: React.FC<KanbanBoardViewProps> = (props) => {
             <table className="KanbanBoardView-board">
                 <thead>
                     <tr>
-                        <th className="KanbanBoardView-header-cell-add-stikey">
+                        <th className="KanbanBoardView-header-cell-add-sticky">
                             <IconButton style={{margin: 0, padding: 0}}
-                                        onClick={ev => props.addStikey()}>
+                                        onClick={ev => props.addSticky()}>
                                 <AddBoxIcon className={clsx(classes.smallIcon)} />
                             </IconButton>
                         </th>
@@ -314,7 +314,7 @@ const KanbanBoardView: React.FC<KanbanBoardViewProps> = (props) => {
                                     className={
                                         (teamOrStory.className || '') + ' ' +
                                         (taskStatus.className || '')}>
-                                    <Stikeys
+                                    <Stickys
                                         teamOrStory={teamOrStory}
                                         taskStatus={taskStatus}
                                         teamOrStories={props.activeBoard.teamOrStories}

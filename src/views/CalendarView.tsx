@@ -145,17 +145,17 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
     const archived = props.record.flags && props.record.flags.includes('Archived');
 
     function handleEditApply(rec: KanbanRecord) {
-        props.updateStikey(rec);
+        props.updateSticky(rec);
         setOpen(false);
     }
 
     function handleArchive(id: string) {
-        props.archiveStikey(id);
+        props.archiveSticky(id);
         setOpen(false);
     }
 
     function handleDelete(id: string) {
-        props.deleteStikey(id);
+        props.deleteSticky(id);
         setOpen(false);
     }
 
@@ -280,7 +280,7 @@ const CalendarView: React.FC<CalendarViewProps> = (props) => {
         week.push(wd);
     }
 
-    const stikeys = props.kanbanBoardState.activeBoard.records.filter(x => {
+    const stickys = props.kanbanBoardState.activeBoard.records.filter(x => {
         if (!x.dueDate) {
             return false;
         }
@@ -347,7 +347,7 @@ const CalendarView: React.FC<CalendarViewProps> = (props) => {
                                             {wd.getDate()}
                                         </div>
                                         <div style={{paddingTop: '20px', minHeight: '80px'}}>
-                                            {stikeys.filter(x => {
+                                            {stickys.filter(x => {
                                                 const d = new Date(x.dueDate);
                                                 const next = new Date(wd.getFullYear(), wd.getMonth(), wd.getDate() + 1);
                                                 if (wd <= d && d < next) {

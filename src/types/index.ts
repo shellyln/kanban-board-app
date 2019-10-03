@@ -143,7 +143,7 @@ export type KanbanDialogProps = {
 
 //// Action payloads ////
 
-export interface UpdateStikeyLanesPayload {
+export interface UpdateStickyLanesPayload {
     kanbanId: string;
     taskStatusValue: string;
     teamOrStoryValue: string;

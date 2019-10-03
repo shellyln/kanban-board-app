@@ -26,11 +26,11 @@ export interface CalendarActions {
         Action<{boardId: string}>;
     updateBoardName: (v: {boardId: string, boardName: string}) =>
         Action<{boardId: string, boardName: string}>;
-    updateStikey: (v: KanbanRecord) =>
+    updateSticky: (v: KanbanRecord) =>
         Action<KanbanRecord>;
-    archiveStikey: (kanbanId: string) =>
+    archiveSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
-    deleteStikey: (kanbanId: string) =>
+    deleteSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
 
     // from AppEventsActions

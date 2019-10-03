@@ -8,16 +8,16 @@ import { KanbanBoardRecord,
 
 
 
-export function pickEditableStikeyProps(stikey: KanbanRecord) {
-    return (Object.assign(stikey._id ? { _id: stikey._id } : {}, {
-        dueDate: stikey.dueDate || '',
-        taskStatus: stikey.taskStatus || '',
-        teamOrStory: stikey.teamOrStory || '',
-        flags: stikey.flags || [],
-        tags: stikey.tags || [],
-        description: stikey.description || '',
-        barcode: stikey.barcode || '',
-        memo: stikey.memo || '',
+export function pickEditableStickyProps(sticky: KanbanRecord) {
+    return (Object.assign(sticky._id ? { _id: sticky._id } : {}, {
+        dueDate: sticky.dueDate || '',
+        taskStatus: sticky.taskStatus || '',
+        teamOrStory: sticky.teamOrStory || '',
+        flags: sticky.flags || [],
+        tags: sticky.tags || [],
+        description: sticky.description || '',
+        barcode: sticky.barcode || '',
+        memo: sticky.memo || '',
     }));
 }
 
@@ -35,23 +35,23 @@ export function pickEditableBoardProps(board: KanbanBoardRecord) {
         preferArchive: !!board.preferArchive,
         boardStyle: board.boardStyle || '',
         calendarStyle: board.calendarStyle || '',
-        records: (board.records && board.records.map(x => pickEditableStikeyProps(x))) || [],
+        records: (board.records && board.records.map(x => pickEditableStickyProps(x))) || [],
     });
 }
 
 
-export function validateStikeyProps(stikey: KanbanRecord) {
-    if (typeof stikey.dueDate !== 'string') {
+export function validateStickyProps(sticky: KanbanRecord) {
+    if (typeof sticky.dueDate !== 'string') {
         throw new Error('string property "dueDate" is required.');
     }
-    if (typeof stikey.taskStatus !== 'string') {
+    if (typeof sticky.taskStatus !== 'string') {
         throw new Error('string property "taskStatus" is required.');
     }
-    if (typeof stikey.teamOrStory !== 'string') {
+    if (typeof sticky.teamOrStory !== 'string') {
         throw new Error('string property "teamOrStory" is required.');
     }
-    if (stikey.flags && Array.isArray(stikey.flags)) {
-        stikey.flags.forEach(x => {
+    if (sticky.flags && Array.isArray(sticky.flags)) {
+        sticky.flags.forEach(x => {
             if (typeof x !== 'string') {
                 throw new Error('property "flags[x]" should be string.');
             }
@@ -59,8 +59,8 @@ export function validateStikeyProps(stikey: KanbanRecord) {
     } else {
         throw new Error('array property "flags" is required.');
     }
-    if (stikey.tags && Array.isArray(stikey.tags)) {
-        stikey.tags.forEach(x => {
+    if (sticky.tags && Array.isArray(sticky.tags)) {
+        sticky.tags.forEach(x => {
             if (typeof x !== 'string') {
                 throw new Error('property "tags[x]" should be string.');
             }
@@ -68,16 +68,16 @@ export function validateStikeyProps(stikey: KanbanRecord) {
     } else {
         throw new Error('array property "tags" is required.');
     }
-    if (typeof stikey.description !== 'string') {
+    if (typeof sticky.description !== 'string') {
         throw new Error('string property "description" is required.');
     }
-    if (typeof stikey.barcode !== 'string') {
+    if (typeof sticky.barcode !== 'string') {
         throw new Error('string property "barcode" is required.');
     }
-    if (typeof stikey.memo !== 'string') {
+    if (typeof sticky.memo !== 'string') {
         throw new Error('string property "memo" is required.');
     }
-    return stikey;
+    return sticky;
 }
 
 
@@ -153,7 +153,7 @@ export function validateBoardProps(board: KanbanBoardRecord) {
     }
 
     if (board.records && Array.isArray(board.records)) {
-        board.records.forEach(x => validateStikeyProps(x));
+        board.records.forEach(x => validateStickyProps(x));
     } else {
         throw new Error('array property "records" is required.');
     }

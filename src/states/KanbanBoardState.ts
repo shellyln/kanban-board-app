@@ -348,8 +348,8 @@ export async function getKanbanBoardReducer() {
                 return state;
             })
 
-            //// addStikey async actions ////
-            .case(kanbanBoardActions.startAddStikey, (state, payload) => {
+            //// addSticky async actions ////
+            .case(kanbanBoardActions.startAddSticky, (state, payload) => {
                 const now = new Date();
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
@@ -373,13 +373,13 @@ export async function getKanbanBoardReducer() {
                 .then(v => {
                     change._id = v.id;
                     change._rev = v.rev;
-                    getConstructedAppStore().dispatch(kanbanBoardActions.doneAddStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.doneAddSticky({
                         params: payload,
                         result: Object.assign({}, state, { activeBoard }),
                     }));
                 })
                 .catch(err => {
-                    getConstructedAppStore().dispatch(kanbanBoardActions.failedAddStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.failedAddSticky({
                         params: payload,
                         error: err,
                     }));
@@ -387,7 +387,7 @@ export async function getKanbanBoardReducer() {
                         getConstructedAppStore().dispatch(appEventsActions.showAlertDialog({
                             open: true,
                             title: 'Error',
-                            message: 'Failed to add stikey: ' + err.message,
+                            message: 'Failed to add sticky: ' + err.message,
                             singleButton: true,
                             colorIsSecondary: true,
                             onClose: () => getConstructedAppStore().dispatch(appEventsActions.closeAlertDialog()),
@@ -397,7 +397,7 @@ export async function getKanbanBoardReducer() {
 
                 return state;
             })
-            .case(kanbanBoardActions.doneAddStikey, (state, arg) => {
+            .case(kanbanBoardActions.doneAddSticky, (state, arg) => {
                 setTimeout(() => {
                     restartSync()
                     .then(() => {
@@ -408,12 +408,12 @@ export async function getKanbanBoardReducer() {
                 }, 1500);
                 return arg.result;
             })
-            .case(kanbanBoardActions.failedAddStikey, (state, arg) => {
+            .case(kanbanBoardActions.failedAddSticky, (state, arg) => {
                 return state;
             })
 
-            //// updateStikey async actions ////
-            .case(kanbanBoardActions.startUpdateStikey, (state, payload) => {
+            //// updateSticky async actions ////
+            .case(kanbanBoardActions.startUpdateSticky, (state, payload) => {
                 const index = state.activeBoard.records.findIndex(x => x._id === payload._id);
                 if (index < 0) {
                     return state;
@@ -440,13 +440,13 @@ export async function getKanbanBoardReducer() {
                 .then(v => {
                     change._id = v.id;
                     change._rev = v.rev;
-                    getConstructedAppStore().dispatch(kanbanBoardActions.doneUpdateStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.doneUpdateSticky({
                         params: payload,
                         result: Object.assign({}, state, { activeBoard }),
                     }));
                 })
                 .catch(err => {
-                    getConstructedAppStore().dispatch(kanbanBoardActions.failedUpdateStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.failedUpdateSticky({
                         params: payload,
                         error: err,
                     }));
@@ -454,7 +454,7 @@ export async function getKanbanBoardReducer() {
                         getConstructedAppStore().dispatch(appEventsActions.showAlertDialog({
                             open: true,
                             title: 'Error',
-                            message: 'Failed to save the stikey: ' + err.message,
+                            message: 'Failed to save the sticky: ' + err.message,
                             singleButton: true,
                             colorIsSecondary: true,
                             onClose: () => getConstructedAppStore().dispatch(appEventsActions.closeAlertDialog()),
@@ -464,15 +464,15 @@ export async function getKanbanBoardReducer() {
 
                 return state;
             })
-            .case(kanbanBoardActions.doneUpdateStikey, (state, arg) => {
+            .case(kanbanBoardActions.doneUpdateSticky, (state, arg) => {
                 return arg.result;
             })
-            .case(kanbanBoardActions.failedUpdateStikey, (state, arg) => {
+            .case(kanbanBoardActions.failedUpdateSticky, (state, arg) => {
                 return state;
             })
 
-            //// updateStikeyLanes async actions ////
-            .case(kanbanBoardActions.startUpdateStikeyLanes, (state, payload) => {
+            //// updateStickyLanes async actions ////
+            .case(kanbanBoardActions.startUpdateStickyLanes, (state, payload) => {
                 const index = state.activeBoard.records.findIndex(x => x._id === payload.kanbanId);
                 if (index < 0) {
                     return state;
@@ -493,13 +493,13 @@ export async function getKanbanBoardReducer() {
                 .then(v => {
                     change._id = v.id;
                     change._rev = v.rev;
-                    getConstructedAppStore().dispatch(kanbanBoardActions.doneUpdateStikeyLanes({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.doneUpdateStickyLanes({
                         params: payload,
                         result: Object.assign({}, state, { activeBoard }),
                     }));
                 })
                 .catch(err => {
-                    getConstructedAppStore().dispatch(kanbanBoardActions.failedUpdateStikeyLanes({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.failedUpdateStickyLanes({
                         params: payload,
                         error: err,
                     }));
@@ -507,7 +507,7 @@ export async function getKanbanBoardReducer() {
                         getConstructedAppStore().dispatch(appEventsActions.showAlertDialog({
                             open: true,
                             title: 'Error',
-                            message: 'Failed to save the stikey: ' + err.message,
+                            message: 'Failed to save the sticky: ' + err.message,
                             singleButton: true,
                             colorIsSecondary: true,
                             onClose: () => getConstructedAppStore().dispatch(appEventsActions.closeAlertDialog()),
@@ -517,15 +517,15 @@ export async function getKanbanBoardReducer() {
 
                 return state;
             })
-            .case(kanbanBoardActions.doneUpdateStikeyLanes, (state, arg) => {
+            .case(kanbanBoardActions.doneUpdateStickyLanes, (state, arg) => {
                 return arg.result;
             })
-            .case(kanbanBoardActions.failedUpdateStikeyLanes, (state, arg) => {
+            .case(kanbanBoardActions.failedUpdateStickyLanes, (state, arg) => {
                 return state;
             })
 
-            //// archiveStikey async actions ////
-            .case(kanbanBoardActions.startArchiveStikey, (state, payload) => {
+            //// archiveSticky async actions ////
+            .case(kanbanBoardActions.startArchiveSticky, (state, payload) => {
                 const index = state.activeBoard.records.findIndex(x => x._id === payload.kanbanId);
                 if (index < 0) {
                     return state;
@@ -545,13 +545,13 @@ export async function getKanbanBoardReducer() {
                 .then(v => {
                     change._id = v.id;
                     change._rev = v.rev;
-                    getConstructedAppStore().dispatch(kanbanBoardActions.doneArchiveStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.doneArchiveSticky({
                         params: payload,
                         result: Object.assign({}, state, { activeBoard }),
                     }));
                 })
                 .catch(err => {
-                    getConstructedAppStore().dispatch(kanbanBoardActions.failedArchiveStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.failedArchiveSticky({
                         params: payload,
                         error: err,
                     }));
@@ -559,7 +559,7 @@ export async function getKanbanBoardReducer() {
                         getConstructedAppStore().dispatch(appEventsActions.showAlertDialog({
                             open: true,
                             title: 'Error',
-                            message: 'Failed to archive the stikey: ' + err.message,
+                            message: 'Failed to archive the sticky: ' + err.message,
                             singleButton: true,
                             colorIsSecondary: true,
                             onClose: () => getConstructedAppStore().dispatch(appEventsActions.closeAlertDialog()),
@@ -569,15 +569,15 @@ export async function getKanbanBoardReducer() {
 
                 return state;
             })
-            .case(kanbanBoardActions.doneArchiveStikey, (state, arg) => {
+            .case(kanbanBoardActions.doneArchiveSticky, (state, arg) => {
                 return arg.result;
             })
-            .case(kanbanBoardActions.failedArchiveStikey, (state, arg) => {
+            .case(kanbanBoardActions.failedArchiveSticky, (state, arg) => {
                 return state;
             })
 
-            //// deleteStikey async actions ////
-            .case(kanbanBoardActions.startDeleteStikey, (state, payload) => {
+            //// deleteSticky async actions ////
+            .case(kanbanBoardActions.startDeleteSticky, (state, payload) => {
                 const index = state.activeBoard.records.findIndex(x => x._id === payload.kanbanId);
                 if (index < 0) {
                     return state;
@@ -592,13 +592,13 @@ export async function getKanbanBoardReducer() {
 
                 db.remove(change, {})
                 .then(v => {
-                    getConstructedAppStore().dispatch(kanbanBoardActions.doneDeleteStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.doneDeleteSticky({
                         params: payload,
                         result: Object.assign({}, state, { activeBoard }),
                     }));
                 })
                 .catch(err => {
-                    getConstructedAppStore().dispatch(kanbanBoardActions.failedDeleteStikey({
+                    getConstructedAppStore().dispatch(kanbanBoardActions.failedDeleteSticky({
                         params: payload,
                         error: err,
                     }));
@@ -606,7 +606,7 @@ export async function getKanbanBoardReducer() {
                         getConstructedAppStore().dispatch(appEventsActions.showAlertDialog({
                             open: true,
                             title: 'Error',
-                            message: 'Failed to delete the stikey: ' + err.message,
+                            message: 'Failed to delete the sticky: ' + err.message,
                             singleButton: true,
                             colorIsSecondary: true,
                             onClose: () => getConstructedAppStore().dispatch(appEventsActions.closeAlertDialog()),
@@ -616,15 +616,15 @@ export async function getKanbanBoardReducer() {
 
                 return state;
             })
-            .case(kanbanBoardActions.doneDeleteStikey, (state, arg) => {
+            .case(kanbanBoardActions.doneDeleteSticky, (state, arg) => {
                 return arg.result;
             })
-            .case(kanbanBoardActions.failedDeleteStikey, (state, arg) => {
+            .case(kanbanBoardActions.failedDeleteSticky, (state, arg) => {
                 return state;
             })
 
-            //// editBoardAndStikeys async actions ////
-            .case(kanbanBoardActions.startEditBoardAndStikeys, (state, payload) => {
+            //// editBoardAndStickys async actions ////
+            .case(kanbanBoardActions.startEditBoardAndStickys, (state, payload) => {
                 (async () => {
                     try {
                         const index = state.boards.findIndex(x => x._id === payload._id);
@@ -656,7 +656,7 @@ export async function getKanbanBoardReducer() {
                         );
                         let activeBoard = change._id === state.activeBoard._id ? change : state.activeBoard;
 
-                        // TODO: stikey records
+                        // TODO: sticky records
                         const records: KanbanRecord[] = (await db.find({selector: {
                             type: 'kanban',
                             boardId: change._id,
@@ -689,7 +689,7 @@ export async function getKanbanBoardReducer() {
                         }
                         change.records = recordsNew;
 
-                        getConstructedAppStore().dispatch(kanbanBoardActions.doneEditBoardAndStikeys({
+                        getConstructedAppStore().dispatch(kanbanBoardActions.doneEditBoardAndStickys({
                             params: payload,
                             result: Object.assign({}, state, {
                                 boards,
@@ -707,7 +707,7 @@ export async function getKanbanBoardReducer() {
                             }));
                         }, 30);
                     } catch (e) {
-                        getConstructedAppStore().dispatch(kanbanBoardActions.failedEditBoardAndStikeys({
+                        getConstructedAppStore().dispatch(kanbanBoardActions.failedEditBoardAndStickys({
                             params: payload,
                             error: e,
                         }));
@@ -726,7 +726,7 @@ export async function getKanbanBoardReducer() {
 
                 return state;
             })
-            .case(kanbanBoardActions.doneEditBoardAndStikeys, (state, arg) => {
+            .case(kanbanBoardActions.doneEditBoardAndStickys, (state, arg) => {
                 setTimeout(() => {
                     restartSync()
                     .then(() => {
@@ -737,7 +737,7 @@ export async function getKanbanBoardReducer() {
                 }, 1500);
                 return arg.result;
             })
-            .case(kanbanBoardActions.failedEditBoardAndStikeys, (state, arg) => {
+            .case(kanbanBoardActions.failedEditBoardAndStickys, (state, arg) => {
                 return state;
             })
 
