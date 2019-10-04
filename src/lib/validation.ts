@@ -82,6 +82,13 @@ export function validateStickyProps(sticky: KanbanRecord) {
 }
 
 
+function checkStyleXSS(text: string) {
+    if (text.match(/<\/style\s*>/i) || text.match(/<script\b/i)) {
+        throw new Error('bad style text is set.');
+    }
+}
+
+
 export function validateBoardProps(board: KanbanBoardRecord) {
     if (typeof board.name !== 'string') {
         throw new Error('string property "name" is required.');
@@ -149,9 +156,11 @@ export function validateBoardProps(board: KanbanBoardRecord) {
     if (typeof board.boardStyle !== 'string') {
         throw new Error('string property "boardStyle" is required.');
     }
+    checkStyleXSS(board.boardStyle);
     if (typeof board.calendarStyle !== 'string') {
         throw new Error('string property "calendarStyle" is required.');
     }
+    checkStyleXSS(board.calendarStyle);
     if (typeof board.boardNote !== 'string') {
         throw new Error('string property "boardNote" is required.');
     }
