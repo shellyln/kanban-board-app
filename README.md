@@ -138,6 +138,49 @@ Tap or Click `Editor` menu item of drawer and edit YAML text.
 
 
 
+## Export / Import a board
+
+Follow the steps below to import the board.
+
+### Export
+1. Open the `Editor` view of the board you want to export.
+1. Copy all configuration text.
+
+### Import
+1. Click `New board...` to create a board.
+1. Open the `Editor` view of the board that created.
+1. Paste the configuration text and click the `Save` button.
+
+Kanban item IDs will be regenerated. You don't care.
+
+
+
+## Tips
+
+### Limit the height of kanban stickys
+
+Paste to the `boardStyle` of the configuration text.
+
+```css
+.KanbanBoardView-sticky-description {
+    max-height: 170px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+.KanbanBoardView-sticky-description::-webkit-scrollbar {
+    width: 10px;
+}
+```
+
+
+
+## FAQ
+
+* I want to use with multiple board list.
+  * You should be deployed to multiple subdirectories or multiple subdomains.
+
+
+
 ## License
 [ISC](https://github.com/shellyln/kanban-board-app/blob/master/LICENSE.md)  
 Copyright (c) 2019 Shellyl_N and Authors.
