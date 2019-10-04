@@ -638,7 +638,7 @@ export async function getKanbanBoardReducer() {
                             name: payload.name || 'Untitled',
                             taskStatuses: payload.taskStatuses || initialData.boards[0].taskStatuses,
                             teamOrStories: payload.teamOrStories || initialData.boards[0].teamOrStories,
-                            tags: payload.tags || initialState.activeBoard.tags,
+                            tags: payload.tags || [],
                             displayBarcode: !!payload.displayBarcode,
                             displayMemo: !!payload.displayMemo,
                             displayFlags: !!payload.displayFlags,
