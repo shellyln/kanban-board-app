@@ -78,6 +78,31 @@ export async function getKanbanBoardReducer() {
             activeBoardIndex: 0,
         };
 
+        const getKanbanBoardStateFromDb = async (state: KanbanBoardState, boardId: string) => {
+            const board = await db.get<KanbanBoardRecord>(boardId, {});
+            if (! board) {
+                return state;
+            }
+            const records: KanbanRecord[] = (await db.find({selector: {
+                type: 'kanban',
+                boardId: board._id,
+            }})).docs as any;
+        
+            board.records = records;
+            const index = Math.max(0, state.boards.findIndex(x => x._id === board._id));
+            const boards = state.boards.slice(0, index).concat(
+                [board],
+                state.boards.slice(index + 1),
+            );
+
+            return (Object.assign({}, state, {
+                boards,
+                activeBoardId: board._id,
+                activeBoard: board,
+                activeBoardIndex: index,
+            }));
+        }
+
         kanbanBoardReducer = reducerWithInitialState(initialState)
             //// addBoard async actions ////
             .case(kanbanBoardActions.startAddBoard, (state, payload) => {
@@ -149,29 +174,11 @@ export async function getKanbanBoardReducer() {
             .case(kanbanBoardActions.startChangeActiveBoard, (state, payload) => {
                 (async () => {
                     try {
-                        const board = await db.get<KanbanBoardRecord>(payload.boardId, {});
-                        if (! board) {
-                            return state;
-                        }
-                        const records: KanbanRecord[] = (await db.find({selector: {
-                            type: 'kanban',
-                            boardId: board._id,
-                        }})).docs as any;
-
-                        board.records = records;
-                        const index = state.boards.findIndex(x => x._id === board._id);
-                        const boards = state.boards.slice(0, index).concat(
-                            [board],
-                            state.boards.slice(index + 1),
-                        );
+                        const newState = await getKanbanBoardStateFromDb(state, payload.boardId);
 
                         getConstructedAppStore().dispatch(kanbanBoardActions.doneChangeActiveBoard({
                             params: payload,
-                            result: Object.assign({}, state, {
-                                boards,
-                                activeBoardId: board._id,
-                                activeBoard: board,
-                            }),
+                            result: newState,
                         }));
                     } catch (e) {
                         getConstructedAppStore().dispatch(kanbanBoardActions.failedChangeActiveBoard({
@@ -290,17 +297,16 @@ export async function getKanbanBoardReducer() {
 
                         await db.remove(dbBoard, {});
 
-                        const index = state.boards.findIndex(x => x._id === payload.boardId);
+                        const activeBoardId = state.activeBoardId === payload.boardId ?
+                            state.boards[0]._id : state.activeBoardId;
+                        const newState = await getKanbanBoardStateFromDb(state, activeBoardId);
+
+                        const index = newState.boards.findIndex(x => x._id === payload.boardId);
+
                         const boards = index >= 0 ?
-                            state.boards.slice(0, index).concat(
-                                state.boards.slice(index + 1),
-                            ) : state.boards;
-                        let activeBoard = state.activeBoard;
-                        let activeBoardId = state.activeBoardId;
-                        if (activeBoardId === payload.boardId) {
-                            activeBoard = boards[0];
-                            activeBoardId = boards[0]._id;
-                        }
+                            newState.boards.slice(0, index).concat(
+                                newState.boards.slice(index + 1),
+                            ) : newState.boards;
 
                         setTimeout(() => {
                             getConstructedAppStore().dispatch(kanbanBoardActions.doneDeleteBoard({
@@ -308,7 +314,8 @@ export async function getKanbanBoardReducer() {
                                 result: Object.assign({}, state, {
                                     boards,
                                     activeBoardId,
-                                    activeBoard,
+                                    activeBoard: newState.activeBoard,
+                                    activeBoardIndex: newState.boards.findIndex(x => x._id === activeBoardId),
                                 }),
                             }));
                             setTimeout(() => {
@@ -748,29 +755,11 @@ export async function getKanbanBoardReducer() {
             .case(kanbanBoardActions.startRefreshActiveBoard, (state, payload) => {
                 (async () => {
                     try {
-                        const board = await db.get<KanbanBoardRecord>(state.activeBoard._id, {});
-                        if (! board) {
-                            return state;
-                        }
-                        const records: KanbanRecord[] = (await db.find({selector: {
-                            type: 'kanban',
-                            boardId: board._id,
-                        }})).docs as any;
-
-                        board.records = records;
-                        const index = state.boards.findIndex(x => x._id === board._id);
-                        const boards = state.boards.slice(0, index).concat(
-                            [board],
-                            state.boards.slice(index + 1),
-                        );
+                        const newState = await getKanbanBoardStateFromDb(state, state.activeBoard._id);
 
                         getConstructedAppStore().dispatch(kanbanBoardActions.doneRefreshActiveBoard({
                             params: payload,
-                            result: Object.assign({}, state, {
-                                boards,
-                                activeBoardId: board._id,
-                                activeBoard: board,
-                            }),
+                            result: newState,
                         }));
                     } catch (e) {
                         getConstructedAppStore().dispatch(kanbanBoardActions.failedRefreshActiveBoard({
