@@ -31,6 +31,8 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
             dispatch(appEventsActions.startResetApplication()),
 
         // from KanbanBoardActions
+        changeActiveBoard: (boardId: string) =>
+            dispatch(kanbanBoardActions.startChangeActiveBoard({ boardId })),
         refreshActiveBoard: () =>
             dispatch(kanbanBoardActions.startRefreshActiveBoard({})),
     }

@@ -101,6 +101,7 @@ Tap or Click `Settings` menu item of drawer and edit YAML text.
 | `remote.password`            | CouchDB / Cloudant `password`                                                                           |
 | `display.autoUpdate`         | If true, periodic automatic update of the currently displayed board is enabled.                         |
 | `display.autoUpdateInterval` | Periodic automatic update interval in seconds.                                                          |
+| `display.goAround`           | If true, move the active board to the next when periodic automatic updates are triggered.               |
 
 
 ### Board Settings

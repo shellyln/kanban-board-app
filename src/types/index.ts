@@ -88,6 +88,7 @@ export interface AppConfigRemoteSettings {
 export interface AppConfigDisplaySettings {
     autoUpdate: boolean;
     autoUpdateInterval: number;
+    goAround: boolean;
 }
 
 export interface AppConfigUserData {

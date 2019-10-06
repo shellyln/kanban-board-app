@@ -189,6 +189,7 @@ export function pickEditableConfigProps(conf: AppConfig) {
             autoUpdate: !!(conf.display && conf.display.autoUpdate),
             autoUpdateInterval: conf.display && conf.display.autoUpdateInterval ?
                 conf.display.autoUpdateInterval : 2419200,
+            goAround: !!(conf.display && conf.display.goAround),
         },
     });
 }
@@ -219,6 +220,9 @@ export function validateConfigProps(conf: AppConfig) {
     }
     if (conf.display.autoUpdateInterval < 10) {
         throw new Error('number property "display.autoUpdateInterval" should 10 <= autoUpdateInterval (unit: sec).');
+    }
+    if (typeof conf.display.goAround !== 'boolean') {
+        throw new Error('boolean property "display.goAround" is required.');
     }
     return conf;
 }
