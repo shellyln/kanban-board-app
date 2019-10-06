@@ -12,6 +12,7 @@ import IconButton                 from '@material-ui/core/IconButton';
 import AddBoxIcon                 from '@material-ui/icons/AddBox';
 import clsx                       from 'clsx';
 import marked                     from 'marked';
+import createDOMPurify            from 'dompurify';
 import { Qr }                     from 'red-agate-barcode';
 import { LaneDef,
          StatusLaneDef,
@@ -51,6 +52,9 @@ type StickyProps = KanbanBoardActions & {
 
 type KanbanBoardViewProps = KanbanBoardState & KanbanBoardActions & RouteComponentProps<{id: string}> & {
 };
+
+
+const DOMPurify = createDOMPurify(window);
 
 
 const useStyles = makeStyles(theme => ({
@@ -127,7 +131,7 @@ const Sticky_: React.FC<StickyProps> = (props) => {
                     }
                     <div
                         className="KanbanBoardView-sticky-description"
-                        dangerouslySetInnerHTML={{__html: marked(props.record.description)}} />
+                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(marked(props.record.description))}} />
                     {props.board.displayBarcode && props.record.barcode ?
                         <div className="KanbanBoardView-sticky-barcode"
                             dangerouslySetInnerHTML={{__html: new Qr({
