@@ -52,6 +52,10 @@ table.KanbanBoardView-board td.status-done {
     color: white;
     background-color: #990000;
 }
+.KanbanBoardView-sticky-tags .tag-merged {
+    color: white;
+    background-color: #006666;
+}
 .KanbanBoardView-sticky-tags .tag-critical {
     color: white;
     background-color: red;
@@ -143,6 +147,9 @@ export const initialData = {
         }, {
             "value": "rejected",
             "className": "tag-rejected"
+        }, {
+            "value": "merged",
+            "className": "tag-merged"
         }, {
             "value": "critical",
             "className": "tag-critical"
@@ -251,7 +258,7 @@ export const initialData = {
         "barcode": "12345",
         "memo": "memo",
         "flags": ["Marked"],
-        "tags": ["PR", "bug", "ok", "NG", "rejected", "critical", "high", "moderate", "low", "⭐⭐⭐"],
+        "tags": ["PR", "bug", "ok", "NG", "rejected", "merged", "critical", "high", "moderate", "low", "⭐⭐⭐"],
         "boardId": "",
         "teamOrStory": "Team B",
         "taskStatus": "Staging"

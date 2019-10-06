@@ -130,7 +130,7 @@ Tap or Click `Editor` menu item of drawer and edit YAML text.
 | `records[i].dueDate`         | Due date of the kanban record. |
 | `records[i].taskStatus`      | Task status internal value of the kanban record. |
 | `records[i].teamOrStory`     | Lane internal value of the kanban record. |
-| `records[i].flags[j]`        | Flags of the kanban record. (separate with commas)<br>Effective flags:<br>&nbsp;&nbsp;&nbsp;&nbsp;`Archived`: archived kanban record.<br>&nbsp;&nbsp;&nbsp;&nbsp;`Marked`: important or watched kanban record. display a pin icon. |
+| `records[i].flags[j]`        | Flags of the kanban record. (separate with commas)<br>Effective flags:<br>&nbsp;&nbsp;&nbsp;&nbsp;`Archived`: archived kanban record.<br>&nbsp;&nbsp;&nbsp;&nbsp;`Marked`: important or watched kanban record. display a pin (📍) icon. |
 | `records[i].tags[j]`         | Tags of the kanban record. (separate with commas) |
 | `records[i].description`     | Description of the kanban record. (Markdown syntax) |
 | `records[i].barcode`         | Barcode (QR code) value of the kanban record. |
