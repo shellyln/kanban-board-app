@@ -111,6 +111,12 @@ const EditorView: React.FC<EditorViewProps> = (props) => {
         if (props.activeBoard._id !== props.match.params.id) {
             const index = props.boards.findIndex(x => x._id === props.match.params.id);
             props.changeActiveBoard(props.match.params.id);
+
+            // NOTE: dirty hack
+            setTimeout(() => {
+                setEditCount(0);
+            }, 30);
+
             return (
                 <div className={classes.root}>
                     {index < 0 ?
