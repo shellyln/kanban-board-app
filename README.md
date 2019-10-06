@@ -158,6 +158,16 @@ Kanban item IDs will be regenerated. You don't care.
 
 ## Tips
 
+### Change kanban stickys and status lanes width
+
+Paste to the `boardStyle` of the configuration text.
+
+```css
+.KanbanBoardView-sticky-note {width: 100px}
+.KanbanBoardView-header-cell-task-statuses {min-width: 160px}
+```
+
+
 ### Limit the height of kanban stickys
 
 Paste to the `boardStyle` of the configuration text.
