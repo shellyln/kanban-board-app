@@ -22,6 +22,8 @@ export interface AppEventsActions {
         Action<void>;
 
     // from KanbanBoardActions
+    changeActiveBoard: (id: string) =>
+        Action<{boardId: string}>;
     refreshActiveBoard: () =>
         Action<{}>;
 }

@@ -32,6 +32,7 @@ import { KanbanBoardState }   from '../types';
 import { mapDispatchToProps,
          mapStateToProps,
          KanbanBoardActions } from '../dispatchers/KanbanBoardDispatcher';
+import { getCurrentView }     from '../lib/util';
 import TextInputDialog        from '../components/TextInputDialog';
 
 
@@ -129,18 +130,7 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
         setBoardsOpen(!boardsOpen);
     }
 
-    let currentView = '';
-    if (props.history.location.pathname) {
-        if (props.history.location.pathname.startsWith('/kanban/')) {
-            currentView = 'kanban';
-        } else if (props.history.location.pathname.startsWith('/calendar/')) {
-            currentView = 'calendar';
-        } else if (props.history.location.pathname.startsWith('/edit/')) {
-            currentView = 'edit';
-        } else if (props.history.location.pathname.startsWith('/config/')) {
-            currentView = 'config';
-        }
-    }
+    let currentView = getCurrentView(props.history);
 
     return (
         <>

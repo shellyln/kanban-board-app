@@ -4,26 +4,29 @@
 
 import React,
        { useEffect,
-         useRef }           from 'react';
-import { connect }          from 'react-redux';
+         useRef }                from 'react';
+import { connect }               from 'react-redux';
 import { Route,
-         Switch }           from "react-router-dom";
-import CssBaseline          from '@material-ui/core/CssBaseline';
-import { makeStyles }       from '@material-ui/core/styles';
-import { ThemeProvider }    from '@material-ui/styles';
-import clsx                 from 'clsx';
-import { AppEventsState }   from './types';
-import { restartSync }      from './lib/db';
-import { theme }            from './lib/theme';
+         Switch }                from "react-router-dom";
+import CssBaseline               from '@material-ui/core/CssBaseline';
+import { makeStyles }            from '@material-ui/core/styles';
+import { ThemeProvider }         from '@material-ui/styles';
+import clsx                      from 'clsx';
+import { AppEventsState }        from './types';
+import { restartSync }           from './lib/db';
+import { theme }                 from './lib/theme';
+import { getCurrentView }        from './lib/util';
 import { mapDispatchToProps,
          mapStateToProps,
-         AppEventsActions } from './dispatchers/AppEventsDispatcher';
-import AppDrawer            from './components/AppDrawer';
-import KanbanBoardView      from './views/KanbanBoardView';
-import CalendarView         from './views/CalendarView';
-import EditorView           from './views/EditorView';
-import SettingsView         from './views/SettingsView';
-import ConfirmDialog        from './components/ConfirmDialog';
+         AppEventsActions }      from './dispatchers/AppEventsDispatcher';
+import { getConstructedAppStore,
+         history }               from './store';
+import AppDrawer                 from './components/AppDrawer';
+import KanbanBoardView           from './views/KanbanBoardView';
+import CalendarView              from './views/CalendarView';
+import EditorView                from './views/EditorView';
+import SettingsView              from './views/SettingsView';
+import ConfirmDialog             from './components/ConfirmDialog';
 
 
 
@@ -74,7 +77,27 @@ const App: React.FC<AppProps> = (props) => {
                 console.log('periodic timer:' + new Date());
                 restartSync()
                 .then(() => {
-                    props.refreshActiveBoard();
+                    let goAround = false;
+                    let nextActiveBoardId = '';
+                    const store = getConstructedAppStore();
+                    if(store && props.appConfig.display) {
+                        const state = store.getState();
+                        if (props.appConfig.display.goAround && state.kanbanBoard.boards.length > 1) {
+                            const index = (Math.max(0, state.kanbanBoard.boards
+                                .findIndex(x => x._id === state.kanbanBoard.activeBoardId)) + 1) %
+                                state.kanbanBoard.boards.length;
+                            goAround = true;
+                            nextActiveBoardId = state.kanbanBoard.boards[index]._id;
+                        }
+                    }
+                    const viewName = getCurrentView(history);
+                    if (viewName !== 'config' && viewName !== 'edit') {
+                        if (goAround) {
+                            history.push(`/${viewName}/${nextActiveBoardId}`);
+                        } else {
+                            props.refreshActiveBoard();
+                        }
+                    }
                 })
                 .catch(err => {
                     console.log(err.message);
