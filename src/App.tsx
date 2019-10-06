@@ -71,6 +71,7 @@ function useInterval(callback: () => void, delay: number | null) {
 const App: React.FC<AppProps> = (props) => {
     const classes = useStyles();
 
+    // Update periodic
     useInterval(
         () => {
             if (props.appConfig) {
@@ -109,6 +110,17 @@ const App: React.FC<AppProps> = (props) => {
                 (props.appConfig.display.autoUpdateInterval || 2419200) * 1000 :
                 null
     );
+
+    // Update only first time (apply synchronized data to renderer)
+    // NOTE: The first board displayed is not up-to-date with the remote database
+    useEffect(() => {
+        // run once
+        setTimeout(() => {
+            props.refreshActiveBoard();
+        }, 3000);
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    }, []);
 
     return (
         <div className={clsx(classes.app)}>
