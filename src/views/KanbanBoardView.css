@@ -36,11 +36,15 @@ table.KanbanBoardView-board th {
     border-collapse: collapse;
     padding: 5px;
 }
+table.KanbanBoardView-board tr {
+    height: 100%;
+}
 table.KanbanBoardView-board td {
     border: solid 1px var(--main-text-color);
     border-collapse: collapse;
     padding: 5px;
     vertical-align: top;
+    height: 100%;
 }
 .KanbanBoardView-sticky-wrap {
     display: flex;
