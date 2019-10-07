@@ -39,7 +39,7 @@ table.KanbanBoardView-board td {
     border: solid 1px var(--main-text-color);
     border-collapse: collapse;
     padding: 5px;
-    vertical-align: middle;
+    vertical-align: top;
 }
 .KanbanBoardView-sticky-wrap {
     display: flex;
