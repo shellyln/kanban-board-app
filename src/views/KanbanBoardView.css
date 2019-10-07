@@ -5,6 +5,7 @@
 
 
 div.KanbanBoardView-content {
+    height: 100%;
     flex-grow: 1;
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
@@ -35,11 +36,15 @@ table.KanbanBoardView-board th {
     border-collapse: collapse;
     padding: 5px;
 }
+table.KanbanBoardView-board tr {
+    height: 100%;
+}
 table.KanbanBoardView-board td {
     border: solid 1px var(--main-text-color);
     border-collapse: collapse;
     padding: 5px;
-    vertical-align: middle;
+    vertical-align: top;
+    height: 100%;
 }
 .KanbanBoardView-sticky-wrap {
     display: flex;
@@ -48,6 +53,7 @@ table.KanbanBoardView-board td {
     align-items: flex-start;
     width: 100%;
     height: 100%;
+    padding-bottom: 10px;
 }
 .KanbanBoardView-sticky-note {
     position: relative;
@@ -132,7 +138,7 @@ table.KanbanBoardView-board .KanbanBoardView-sticky-note.expired {
     color: var(--main-text-color);
 }
 .KanbanBoardView-sticky-description img {
-    width: 100%;
+    max-width: 100%;
 }
 .KanbanBoardView-sticky-description ul {
     padding-inline-start: 1em;
@@ -212,7 +218,7 @@ table.KanbanBoardView-board thead th:nth-of-type(1) {
     color: var(--main-text-color);
 }
 .KanbanBoardView-board-note img {
-    width: 100%;
+    max-width: 100%;
 }
 .KanbanBoardView-board-note ul {
     padding-inline-start: 1em;

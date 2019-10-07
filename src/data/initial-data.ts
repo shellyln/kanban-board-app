@@ -325,7 +325,8 @@ export const initialData = {
         "type": "kanban",
         "dueDate": "",
         "description":
-            "Release Kanban board app v0.0.1",
+            "Release Kanban board app v0.0.1\n\n" +
+            "![image](https://shellyln.github.io/knbn/images/icons/icon-32x32.png)",
         "barcode": "",
         "memo": "",
         "flags": [],

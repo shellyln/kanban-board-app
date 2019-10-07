@@ -191,6 +191,8 @@ const Stickys_: React.FC<StickysProps> = (props) => {
         ev.preventDefault();
     }
 
+    const filtered = props.records.filter(x => !x.flags || !x.flags.includes('Archived'));
+
     return (
         <div
             className={
@@ -202,7 +204,7 @@ const Stickys_: React.FC<StickysProps> = (props) => {
             onDragOver={handleOnDragOver}
             onDrop={handleOnDrop}
             >
-            {props.records.filter(x => !x.flags || !x.flags.includes('Archived')).map(record => (
+            {filtered.map(record => (
                 <Sticky
                     key={record._id || gensym()}
                     teamOrStory={props.teamOrStory}
@@ -211,9 +213,11 @@ const Stickys_: React.FC<StickysProps> = (props) => {
                     taskStatuses={props.taskStatuses}
                     board={props.board}
                     record={record}/>
-            ))}{
+            ))}
+            {(firefox && filtered.length === 0) ?
                 // NOTE: hack for the height of div becomes 0 in Firefox
-                firefox ? <>&nbsp;</> : <></>
+                <div style={{width: '100%', height: '100%'}}>&nbsp;</div> :
+                <></>
             }
         </div>
     );
