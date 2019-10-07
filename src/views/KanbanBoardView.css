@@ -132,7 +132,7 @@ table.KanbanBoardView-board .KanbanBoardView-sticky-note.expired {
     color: var(--main-text-color);
 }
 .KanbanBoardView-sticky-description img {
-    width: 100%;
+    max-width: 100%;
 }
 .KanbanBoardView-sticky-description ul {
     padding-inline-start: 1em;
@@ -212,7 +212,7 @@ table.KanbanBoardView-board thead th:nth-of-type(1) {
     color: var(--main-text-color);
 }
 .KanbanBoardView-board-note img {
-    width: 100%;
+    max-width: 100%;
 }
 .KanbanBoardView-board-note ul {
     padding-inline-start: 1em;
