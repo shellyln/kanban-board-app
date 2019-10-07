@@ -5,6 +5,7 @@
 
 
 div.KanbanBoardView-content {
+    height: 100%;
     flex-grow: 1;
     color: var(--main-text-color);
     background-color: var(--main-bg-color);
