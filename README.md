@@ -29,7 +29,8 @@ Kanban style task management board app
 * Dark mode
 * PWA (if building with the feature enabled)
     * See `src/index.tsx`
-
+* Signage mode (Auto update & Go around)
+    * See `display.autoUpdate` and `display.goAround` settings.
 
 
 ## Requirements
@@ -184,7 +185,7 @@ Paste to the `boardStyle` of the configuration text.
 ```
 
 
-## Display background text in the table cell
+### Display background text in the table cell
 
 Paste to the `boardStyle` of the configuration text.
 
@@ -200,7 +201,7 @@ table.KanbanBoardView-board td.status-backlog.team-or-story-team-b {
 
 ## FAQ
 
-* I want to use with multiple board list.
+* I want to use with multiple board list. (personal, family, at work, ...)
   * You should be deployed to multiple subdirectories or multiple subdomains.
   * Or you can do it with multiple browser user profiles.
 
