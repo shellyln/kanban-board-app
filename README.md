@@ -192,7 +192,7 @@ Paste to the `boardStyle` of the configuration text.
 ```css
 table.KanbanBoardView-board td.status-backlog.team-or-story-team-b {
     padding-top: 35px;
-    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" unit="px" viewBox="0 0 250 35"><rect x="0" y="0" width="250" height="35" fill="yellow"/><text font-size="14pt" x="5" y="5" font-family="sans-serif" dominant-baseline="text-before-edge" fill="gray">Cell Background Text</text></svg>') no-repeat left top;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 250 35"><rect x="0" y="0" width="250" height="35" fill="yellow"/><text font-size="14pt" x="5" y="5" font-family="sans-serif" dominant-baseline="text-before-edge" fill="gray">Cell Background Text</text></svg>') no-repeat left top;
     background-size: 250px 35px;
 }
 ```
