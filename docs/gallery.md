@@ -161,7 +161,7 @@ calendarStyle: |
   div.CalendarView-item-chip.status-done {
       background-color: var(--sticky-green-color);
   }
-boardNote: WIP limits=2
+boardNote: '# WIP limits=2'
 records:
   - _id: 222713cd-8be7-475a-a2b6-2a62bca046c6
     dueDate: '2019-10-12'
