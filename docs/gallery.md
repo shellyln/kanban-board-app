@@ -12,7 +12,7 @@
 ![Basic Kanban board](./images/gallery/basic-kanban-board.png)
 
 <details>
-<summary>Click to open board settings text</summary>
+<summary>Click to open board configuration text</summary>
 
 ```yaml
 name: Basic Kanban board
@@ -189,7 +189,7 @@ records:
 ![Empathy Map](./images/gallery/empathy-map.png)
 
 <details>
-<summary>Click to open board settings text</summary>
+<summary>Click to open board configuration text</summary>
 
 ```yaml
 name: Empathy Map
@@ -485,7 +485,7 @@ records:
 ![Business Model Canvas](./images/gallery/business-model-canvas.png)
 
 <details>
-<summary>Click to open board settings text</summary>
+<summary>Click to open board configuration text</summary>
 
 ```yaml
 name: Business Model Canvas
@@ -815,7 +815,7 @@ records:
 ![SWOT analysis](./images/gallery/swot-analysis.png)
 
 <details>
-<summary>Click to open board settings text</summary>
+<summary>Click to open board configuration text</summary>
 
 ```yaml
 name: SWOT analysis
@@ -1032,7 +1032,7 @@ records:
 ![Rota (calendar)](./images/gallery/rota-calendar.png)
 
 <details>
-<summary>Click to open board settings text</summary>
+<summary>Click to open board configuration text</summary>
 
 ```yaml
 name: Rota
