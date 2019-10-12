@@ -58,6 +58,10 @@ Kanban style task management board app
 ![calendar](https://raw.githubusercontent.com/shellyln/kanban-board-app/master/docs/images/setting.png)
 
 
+## Board Gallery
+
+See [gallery.md](https://github.com/shellyln/kanban-board-app/blob/master/docs/gallery.md)
+
 
 ## Getting started
 

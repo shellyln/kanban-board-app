@@ -1,4 +1,4 @@
-# Gallery
+# Board Gallery
 
 ### To import the following examples:
 1. Click `New board...` to create a board.
