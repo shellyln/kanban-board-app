@@ -169,6 +169,14 @@ Kanban item IDs will be regenerated. You don't care.
 
 
 
+## Integrations
+
+### Export task schedules to Google Calendar
+
+See [kanban-board-calendar-exporter](https://github.com/shellyln/kanban-board-calendar-exporter).
+
+
+
 ## Tips
 
 ### Change kanban stickys and status lanes width
