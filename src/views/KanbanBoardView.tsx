@@ -95,6 +95,11 @@ const Sticky_: React.FC<StickyProps> = (props) => {
         setOpen(false);
     }
 
+    function handleUnarchive(id: string) {
+        props.unarchiveSticky(id);
+        setOpen(false);
+    }
+
     function handleDelete(id: string) {
         props.deleteSticky(id);
         setOpen(false);
@@ -162,6 +167,7 @@ const Sticky_: React.FC<StickyProps> = (props) => {
                     board={props.board}
                     onApply={handleEditApply}
                     onArchive={handleArchive}
+                    onUnarchive={handleUnarchive}
                     onDelete={handleDelete}
                     onCancel={handleEditCancel} /> : <></>
             }

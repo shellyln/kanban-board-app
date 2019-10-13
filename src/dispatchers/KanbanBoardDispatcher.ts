@@ -39,6 +39,8 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
             dispatch(kanbanBoardActions.startUpdateStickyLanes(v)),
         archiveSticky: (kanbanId: string) =>
             dispatch(kanbanBoardActions.startArchiveSticky({ kanbanId })),
+        unarchiveSticky: (kanbanId: string) =>
+            dispatch(kanbanBoardActions.startUnarchiveSticky({ kanbanId })),
         deleteSticky: (kanbanId: string) =>
             dispatch(kanbanBoardActions.startDeleteSticky({ kanbanId })),
 

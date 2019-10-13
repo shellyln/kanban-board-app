@@ -138,6 +138,7 @@ export type KanbanDialogProps = {
     board: KanbanBoardRecord,
     onApply: (rec: KanbanRecord) => void,
     onArchive: (recId: string) => void,
+    onUnarchive: (recId: string) => void,
     onDelete: (recId: string) => void,
     onCancel: () => void,
 };

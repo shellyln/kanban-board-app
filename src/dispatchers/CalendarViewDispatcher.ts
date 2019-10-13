@@ -49,6 +49,8 @@ export function mapDispatchToProps(dispatch: Dispatch<Action<any>>) {
             dispatch(kanbanBoardActions.startUpdateSticky(Object.assign({}, v, { dispatch }))),
         archiveSticky: (kanbanId: string) =>
             dispatch(kanbanBoardActions.startArchiveSticky({ kanbanId })),
+        unarchiveSticky: (kanbanId: string) =>
+            dispatch(kanbanBoardActions.startUnarchiveSticky({ kanbanId })),
         deleteSticky: (kanbanId: string) =>
             dispatch(kanbanBoardActions.startDeleteSticky(Object.assign({}, { kanbanId }, { dispatch }))),
     }

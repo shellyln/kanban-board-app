@@ -154,6 +154,11 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
         setOpen(false);
     }
 
+    function handleUnarchive(id: string) {
+        props.unarchiveSticky(id);
+        setOpen(false);
+    }
+
     function handleDelete(id: string) {
         props.deleteSticky(id);
         setOpen(false);
@@ -186,6 +191,7 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
                     board={props.board}
                     onApply={handleEditApply}
                     onArchive={handleArchive}
+                    onUnarchive={handleUnarchive}
                     onDelete={handleDelete}
                     onCancel={handleEditCancel} /> : <></>
             }

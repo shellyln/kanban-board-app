@@ -21,6 +21,7 @@ import DialogTitle                from '@material-ui/core/DialogTitle';
 import Typography                 from '@material-ui/core/Typography';
 import Fab                        from '@material-ui/core/Fab';
 import ArchiveIcon                from '@material-ui/icons/Archive';
+import UnarchiveIcon              from '@material-ui/icons/Unarchive';
 import DeleteIcon                 from '@material-ui/icons/Delete';
 import CheckIcon                  from '@material-ui/icons/Check';
 import CancelIcon                 from '@material-ui/icons/Cancel';
@@ -73,6 +74,8 @@ const KanbanDialog: React.FC<KanbanDialogProps> = (props) => {
     const formDialogTitleId = gensym();
     const taskStatusesId = gensym();
     const teamOrStoryId = gensym();
+
+    const archived = props.record.flags ? props.record.flags.includes('Archived') : false;
 
     function handleCancelClick() {
         setOpen(false);
@@ -150,6 +153,14 @@ const KanbanDialog: React.FC<KanbanDialogProps> = (props) => {
         }
     }
 
+    function handleConfirmUnarchiving(apply: boolean) {
+        setConfirmOpen(false);
+        if (apply) {
+            setOpen(false);
+            props.onUnarchive(props.record._id);
+        }
+    }
+
     function handleConfirmDeleting(apply: boolean) {
         setConfirmOpen(false);
         if (apply) {
@@ -168,10 +179,14 @@ const KanbanDialog: React.FC<KanbanDialogProps> = (props) => {
                         variant="outlined"
                         color={props.board.preferArchive ? 'default' : 'secondary'}
                         onClick={handleArchiveOrDeleteClick} >
-                        {props.board.preferArchive ? <ArchiveIcon /> : <DeleteIcon color="secondary" />}
+                        {props.board.preferArchive ?
+                            (archived ? <UnarchiveIcon /> : <ArchiveIcon />) :
+                            <DeleteIcon color="secondary" />}
                         <Typography variant="body1" color={props.board.preferArchive ? 'initial' : 'secondary'}
                             style={{marginLeft: theme.spacing(1)}} >
-                            {props.board.preferArchive ? 'Archive' : 'Delete'}
+                            {props.board.preferArchive ?
+                                (archived ? 'Unarchive' : 'Archive') :
+                                'Delete'}
                         </Typography>
                     </Button>
                 </DialogTitle>
@@ -328,19 +343,26 @@ const KanbanDialog: React.FC<KanbanDialogProps> = (props) => {
                 <ConfirmDialog
                     open={true}
                     title={props.board.preferArchive ? 'Archive kanban' : 'Delete kanban'}
-                    message={`Are you sure want to ${props.board.preferArchive ? 'archive' : 'delete'} the kanban?`}
+                    message={`Are you sure want to ${props.board.preferArchive ?
+                        (archived ? 'unarchive' : 'archive') :
+                        'delete'} the kanban?`}
                     colorIsSecondary={props.board.preferArchive ? false : true}
                     applyButtonCaption={props.board.preferArchive ? 'Archive' : 'Delete'}
                     fab={props.board.preferArchive ?
-                        <Fab size="large" variant="round" aria-label="archive" style={{margin: 'auto'}}>
-                            <ArchiveIcon />
-                        </Fab> :
+                        (archived ?
+                            <Fab size="large" variant="round" aria-label="unarchive" style={{margin: 'auto'}}>
+                                <UnarchiveIcon />
+                            </Fab> :
+                            <Fab size="large" variant="round" aria-label="archive" style={{margin: 'auto'}}>
+                                <ArchiveIcon />
+                            </Fab>
+                        ) :
                         <Fab size="large" variant="round" aria-label="delete" color="secondary" style={{margin: 'auto'}}>
                             <DeleteIcon />
                         </Fab>
                     }
                     onClose={props.board.preferArchive ?
-                        handleConfirmArchiving:
+                        (archived ? handleConfirmUnarchiving : handleConfirmArchiving):
                         handleConfirmDeleting} /> :
                 <></>
             }
