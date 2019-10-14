@@ -109,6 +109,12 @@ const useStyles = makeStyles(theme => ({
         verticalAlign: 'top',
         backgroundColor: 'var(--weak-data-bg-color)',
     },
+    calendarCellCaptionToday: {
+        color: 'var(--calendar-today-color)',
+        backgroundColor: 'var(--calendar-today-bg-color)',
+        borderRadius: '10px',
+        border: 'solid 1.5px var(--calendar-today-bg-color)',
+    },
     chip: {
         fontSize: 'smaller',
         borderRadius: '5px',
@@ -154,6 +160,11 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
         setOpen(false);
     }
 
+    function handleUnarchive(id: string) {
+        props.unarchiveSticky(id);
+        setOpen(false);
+    }
+
     function handleDelete(id: string) {
         props.deleteSticky(id);
         setOpen(false);
@@ -186,6 +197,7 @@ const CalendarItem_: React.FC<CalendarItemProps> = (props) => {
                     board={props.board}
                     onApply={handleEditApply}
                     onArchive={handleArchive}
+                    onUnarchive={handleUnarchive}
                     onDelete={handleDelete}
                     onCancel={handleEditCancel} /> : <></>
             }
@@ -252,6 +264,9 @@ const CalendarView: React.FC<CalendarViewProps> = (props) => {
             );
         }
     }
+
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     const month = props.activeMonth;
 
@@ -339,32 +354,36 @@ const CalendarView: React.FC<CalendarViewProps> = (props) => {
                     {dates.map(week =>
                         <tr key={week[0].getTime()}>
                             <td className={clsx(classes.calendarCell)}></td>
-                            {week.map((wd: Date, index: number) =>
-                                <td key={wd.toISOString()}
-                                    className={clsx(index === 0 || index === 6 ? classes.calendarWeekendCell :classes.calendarCell)}>
-                                    <div style={{position: 'relative'}}>
-                                        <div style={{position: 'absolute', top: '0', right: '0'}}>
-                                            {wd.getDate()}
+                            {week.map((wd: Date, index: number) => {
+                                const next = new Date(wd.getFullYear(), wd.getMonth(), wd.getDate() + 1);
+                                return (
+                                    <td key={wd.toISOString()}
+                                        className={clsx(index === 0 || index === 6 ? classes.calendarWeekendCell :classes.calendarCell)}>
+                                        <div style={{position: 'relative'}}>
+                                            <div
+                                                className={wd <= today && today < next ? clsx(classes.calendarCellCaptionToday) : ''}
+                                                style={{position: 'absolute', top: '0', right: '0'}}>
+                                                {wd.getDate()}
+                                            </div>
+                                            <div style={{paddingTop: '20px', minHeight: '80px'}}>
+                                                {stickys.filter(x => {
+                                                    const d = new Date(x.dueDate);
+                                                    if (wd <= d && d < next) {
+                                                        return true;
+                                                    } else {
+                                                        return false;
+                                                    }
+                                                }).map(x =>
+                                                    <CalendarItem
+                                                        board={props.kanbanBoardState.activeBoard}
+                                                        key={x._id}
+                                                        record={x} />
+                                                )}
+                                            </div>
                                         </div>
-                                        <div style={{paddingTop: '20px', minHeight: '80px'}}>
-                                            {stickys.filter(x => {
-                                                const d = new Date(x.dueDate);
-                                                const next = new Date(wd.getFullYear(), wd.getMonth(), wd.getDate() + 1);
-                                                if (wd <= d && d < next) {
-                                                    return true;
-                                                } else {
-                                                    return false;
-                                                }
-                                            }).map(x =>
-                                                <CalendarItem
-                                                    board={props.kanbanBoardState.activeBoard}
-                                                    key={x._id}
-                                                    record={x} />
-                                            )}
-                                        </div>
-                                    </div>
-                                </td>
-                            )}
+                                    </td>
+                                );
+                            })}
                         </tr>
                     )}
                 </tbody>

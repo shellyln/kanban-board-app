@@ -585,6 +585,57 @@ export async function getKanbanBoardReducer() {
                 return state;
             })
 
+            //// unarchiveSticky async actions ////
+            .case(kanbanBoardActions.startUnarchiveSticky, (state, payload) => {
+                const index = state.activeBoard.records.findIndex(x => x._id === payload.kanbanId);
+                if (index < 0) {
+                    return state;
+                }
+
+                const change = Object.assign({}, state.activeBoard.records[index]);
+                change.flags = (change.flags || []).filter(x => x !== 'Archived');
+
+                const records = state.activeBoard.records.slice(0, index).concat(
+                    [change],
+                    state.activeBoard.records.slice(index + 1),
+                );
+                const activeBoard = Object.assign({}, state.activeBoard, { records });
+
+                db.put(change, {})
+                .then(v => {
+                    change._id = v.id;
+                    change._rev = v.rev;
+                    getConstructedAppStore().dispatch(kanbanBoardActions.doneUnarchiveSticky({
+                        params: payload,
+                        result: Object.assign({}, state, { activeBoard }),
+                    }));
+                })
+                .catch(err => {
+                    getConstructedAppStore().dispatch(kanbanBoardActions.failedUnarchiveSticky({
+                        params: payload,
+                        error: err,
+                    }));
+                    setTimeout(() => {
+                        getConstructedAppStore().dispatch(appEventsActions.showAlertDialog({
+                            open: true,
+                            title: 'Error',
+                            message: 'Failed to unarchive the sticky: ' + err.message,
+                            singleButton: true,
+                            colorIsSecondary: true,
+                            onClose: () => getConstructedAppStore().dispatch(appEventsActions.closeAlertDialog()),
+                        }));
+                    }, 30);
+                });
+
+                return state;
+            })
+            .case(kanbanBoardActions.doneUnarchiveSticky, (state, arg) => {
+                return arg.result;
+            })
+            .case(kanbanBoardActions.failedUnarchiveSticky, (state, arg) => {
+                return state;
+            })
+
             //// deleteSticky async actions ////
             .case(kanbanBoardActions.startDeleteSticky, (state, payload) => {
                 const index = state.activeBoard.records.findIndex(x => x._id === payload.kanbanId);

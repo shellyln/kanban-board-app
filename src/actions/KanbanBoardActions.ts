@@ -30,6 +30,8 @@ export interface KanbanBoardActions {
         Action<UpdateStickyLanesPayload>;
     archiveSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
+    unarchiveSticky: (kanbanId: string) =>
+        Action<{kanbanId: string}>;
     deleteSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
 
@@ -67,6 +69,8 @@ const updateStickyLanes =
     actionCreator.async<UpdateStickyLanesPayload, KanbanBoardState, Error>('ACTIONS_UPDATE_STICKY_LANES');
 const archiveSticky =
     actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_ARCHIVE_STICKY');
+const unarchiveSticky =
+    actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_UNARCHIVE_STICKY');
 const deleteSticky =
     actionCreator.async<{kanbanId: string}, KanbanBoardState, Error>('ACTIONS_DELETE_STICKY');
 
@@ -109,6 +113,10 @@ export const kanbanBoardActions = {
     startArchiveSticky: archiveSticky.started,
     doneArchiveSticky: archiveSticky.done,
     failedArchiveSticky: archiveSticky.failed,
+
+    startUnarchiveSticky: unarchiveSticky.started,
+    doneUnarchiveSticky: unarchiveSticky.done,
+    failedUnarchiveSticky: unarchiveSticky.failed,
 
     startDeleteSticky: deleteSticky.started,
     doneDeleteSticky: deleteSticky.done,

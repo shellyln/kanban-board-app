@@ -30,6 +30,8 @@ export interface CalendarActions {
         Action<KanbanRecord>;
     archiveSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
+    unarchiveSticky: (kanbanId: string) =>
+        Action<{kanbanId: string}>;
     deleteSticky: (kanbanId: string) =>
         Action<{kanbanId: string}>;
 

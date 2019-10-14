@@ -21,6 +21,8 @@
         --sticky-tag-text-color: #fff;
         --calendar-sunday-color: #290e0e;
         --calendar-saturday-color: #0a1520;
+        --calendar-today-color: #fff;
+        --calendar-today-bg-color: #1e84eb;
     }
 }
 
@@ -41,6 +43,8 @@
         --sticky-tag-text-color: #000;
         --calendar-sunday-color: #ffafaf;
         --calendar-saturday-color: #dbedff;
+        --calendar-today-color: #fff;
+        --calendar-today-bg-color: #1e84eb;
     }
 }
 
