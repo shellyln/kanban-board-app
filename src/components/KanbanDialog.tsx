@@ -342,12 +342,16 @@ const KanbanDialog: React.FC<KanbanDialogProps> = (props) => {
             {confirmOpen ?
                 <ConfirmDialog
                     open={true}
-                    title={props.board.preferArchive ? 'Archive kanban' : 'Delete kanban'}
+                    title={props.board.preferArchive ?
+                        (archived ? 'Unarchive kanban' : 'Archive kanban') :
+                        'Delete kanban'}
                     message={`Are you sure want to ${props.board.preferArchive ?
                         (archived ? 'unarchive' : 'archive') :
                         'delete'} the kanban?`}
                     colorIsSecondary={props.board.preferArchive ? false : true}
-                    applyButtonCaption={props.board.preferArchive ? 'Archive' : 'Delete'}
+                    applyButtonCaption={props.board.preferArchive ?
+                        (archived ? 'Unarchive' : 'Archive') :
+                        'Delete'}
                     fab={props.board.preferArchive ?
                         (archived ?
                             <Fab size="large" variant="round" aria-label="unarchive" style={{margin: 'auto'}}>
