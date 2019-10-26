@@ -49,12 +49,12 @@
 }
 
 
-html {
+html.KanbanBoardApp-html {
     height: 100%;
     background-color: var(--main-bg-color);
 }
 
-body {
+body.KanbanBoardApp-body {
     height: 100%;
     margin: 0;
     font-family: -apple-system, system-ui, BlinkMacSystemFont,
