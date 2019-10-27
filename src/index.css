@@ -57,11 +57,6 @@ html.KanbanBoardApp-html {
 body.KanbanBoardApp-body {
     height: 100%;
     margin: 0;
-    /* font-family: -apple-system, system-ui, BlinkMacSystemFont,
-        'Hiragino Kaku Gothic ProN', meiryo,
-        'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif; */
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
