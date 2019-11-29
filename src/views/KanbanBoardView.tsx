@@ -13,7 +13,7 @@ import AddBoxIcon                 from '@material-ui/icons/AddBox';
 import clsx                       from 'clsx';
 import marked                     from 'marked';
 import createDOMPurify            from 'dompurify';
-import { Qr }                     from 'red-agate-barcode';
+import { Qr }                     from 'red-agate-barcode/modules/barcode/Qr';
 import { LaneDef,
          StatusLaneDef,
          KanbanRecord,
