@@ -1,7 +1,7 @@
 {
   "name": "kanban-board-app",
   "private": false,
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Kanban style task management board app",
   "keywords": [
     "kanban",
