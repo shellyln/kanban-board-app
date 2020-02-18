@@ -38,7 +38,7 @@
     "connected-react-router": "^6.7.0",
     "date-fns": "^2.9.0",
     "dompurify": "^2.0.8",
-    "fruitsconfits": "0.2.0",
+    "fruitsconfits": "^0.3.0",
     "js-yaml": "^3.13.1",
     "marked": "^0.8.0",
     "pouchdb-browser": "^7.1.1",
