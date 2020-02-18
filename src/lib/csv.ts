@@ -3,8 +3,9 @@
 // https://github.com/shellyln
 
 
-import { parserInput }      from 'fruitsconfits/modules/lib/types';
-import { getStringParsers } from 'fruitsconfits/modules/lib/string-parser';
+import { parserInput }        from 'fruitsconfits/modules/lib/types';
+import { formatErrorMessage } from 'fruitsconfits/modules/lib/parser';
+import { getStringParsers }   from 'fruitsconfits/modules/lib/string-parser';
 
 
 
@@ -51,7 +52,7 @@ const rows = makeProgram(combine(
 export function parse(s: string) {
     const z = rows(parserInput(s));
     if (! z.succeeded) {
-        throw new Error(z.message);
+        throw new Error(formatErrorMessage(z));
     }
     return z.tokens as string[][];
 }
