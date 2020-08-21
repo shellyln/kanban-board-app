@@ -18,7 +18,8 @@ import                                     'codemirror/lib/codemirror.css';
 import                                     'codemirror/theme/material.css';
 import                                     'codemirror/mode/yaml/yaml';
 import jsYaml                         from 'js-yaml';
-import { KanbanBoardState }           from '../types';
+import { KanbanBoardState,
+         KanbanBoardRecord }          from '../types';
 import { mapDispatchToProps,
          mapStateToProps,
          KanbanBoardActions }         from '../dispatchers/KanbanBoardDispatcher';
@@ -76,7 +77,7 @@ const EditorView: React.FC<EditorViewProps> = (props) => {
 
     function handleSaveClick() {
         try {
-            const data = jsYaml.safeLoad(editorValue);
+            const data: KanbanBoardRecord = jsYaml.safeLoad(editorValue) as any;
             if (data) {
                 validateBoardProps(data);
                 props.editBoardAndStickys(Object.assign({}, data, { _id: props.activeBoard._id }));

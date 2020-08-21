@@ -1,6 +1,13 @@
+# Changelog
+
+## v0.1.15
+
+* Update dependencies.
+* Migrate to TypeScript 4.0.
 
 
-# v0.1.14
+
+## v0.1.14
 
 ```
 ncu -u
