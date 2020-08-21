@@ -2,7 +2,8 @@
 
 ## v0.1.15
 
-* Update dependencies. (Migrate to TypeScript 4.0)
+* Update dependencies.
+* Migrate to TypeScript 4.0.
 
 
 
