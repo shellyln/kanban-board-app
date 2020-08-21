@@ -18,7 +18,8 @@ import                                     'codemirror/lib/codemirror.css';
 import                                     'codemirror/theme/material.css';
 import                                     'codemirror/mode/yaml/yaml';
 import jsYaml                         from 'js-yaml';
-import { AppEventsState }             from '../types';
+import { AppEventsState,
+         AppConfigDbRecord }          from '../types';
 import { mapDispatchToProps,
          mapStateToProps,
          AppEventsActions }           from '../dispatchers/AppEventsDispatcher';
@@ -74,7 +75,7 @@ const SettingsView: React.FC<SettingsViewProps> = (props) => {
 
     function handleSaveClick() {
         try {
-            const data = jsYaml.safeLoad(editorValue);
+            const data: AppConfigDbRecord = jsYaml.safeLoad(editorValue) as any;
             if (data) {
                 validateConfigProps(data);
                 props.updateAppConfig(Object.assign({}, data));

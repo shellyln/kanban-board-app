@@ -734,8 +734,8 @@ export async function getKanbanBoardReducer() {
                                 recNew._rev = resp.rev;
                             } else {
                                 recNew = Object.assign({}, rec, { type: 'kanban', boardId: change._id });
-                                delete recNew._id;
-                                delete recNew._rev;
+                                delete (recNew as any)._id;  // (TS>=4.0) TS2790 The operand of a 'delete' operator must be optional.
+                                delete (recNew as any)._rev; // (TS>=4.0) TS2790 The operand of a 'delete' operator must be optional.
                                 const resp = await db.post(recNew, {});
                                 recNew._id = resp.id;
                                 recNew._rev = resp.rev;
