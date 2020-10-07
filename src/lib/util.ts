@@ -13,6 +13,8 @@ export function getCurrentView(history: History<any>) {
             currentView = 'kanban';
         } else if (history.location.pathname.startsWith('/calendar/')) {
             currentView = 'calendar';
+        } else if (history.location.pathname.startsWith('/flow/')) {
+            currentView = 'flow';
         } else if (history.location.pathname.startsWith('/edit/')) {
             currentView = 'edit';
         } else if (history.location.pathname.startsWith('/config/')) {

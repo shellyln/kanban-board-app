@@ -198,6 +198,12 @@ const AppDrawer: React.FC<AppDrawerProps> = (props) => {
                     <List>
                         {/* settings */}
                         <ListItem button
+                                selected={currentView === 'flow'}
+                                onClick={ev => handleChangeView('flow', props.activeBoardId)}>
+                            <ListItemIcon><TableChartIcon /></ListItemIcon>
+                            {open ? <ListItemText primary="Flow" /> : <></>}
+                        </ListItem>
+                        <ListItem button
                                 selected={currentView === 'kanban' || currentView === ''}
                                 onClick={ev => handleChangeView('kanban', props.activeBoardId)}>
                             <ListItemIcon><TableChartIcon /></ListItemIcon>

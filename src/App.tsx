@@ -23,6 +23,7 @@ import { getConstructedAppStore,
          history }               from './store';
 import AppDrawer                 from './components/AppDrawer';
 import KanbanBoardView           from './views/KanbanBoardView';
+import FlowKanbanBoardView       from './views/FlowKanbanBoardView';
 import CalendarView              from './views/CalendarView';
 import EditorView                from './views/EditorView';
 import SettingsView              from './views/SettingsView';
@@ -130,6 +131,7 @@ const App: React.FC<AppProps> = (props) => {
                 <Switch>
                     <Route path="/" exact component={KanbanBoardView} />
                     <Route path="/kanban/:id?" component={KanbanBoardView} />
+                    <Route path="/flow/:id?" component={FlowKanbanBoardView} />
                     <Route path="/calendar/:id?" component={CalendarView} />
                     <Route path="/edit/:id?" component={EditorView} />
                     <Route path="/config/" component={SettingsView} />

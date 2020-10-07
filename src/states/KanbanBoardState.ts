@@ -362,6 +362,7 @@ export async function getKanbanBoardReducer() {
                 const now = new Date();
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
+                const targetState = state.activeBoard.taskStatuses[0];
                 const change: KanbanRecord = {
                     type: 'kanban',
                     dueDate: formatDate(today),
@@ -371,9 +372,12 @@ export async function getKanbanBoardReducer() {
                     flags: [],
                     tags: [],
                     boardId: state.activeBoardId,
-                    taskStatus: state.activeBoard.taskStatuses[0].value,
+                    taskStatus: targetState.value,
                     teamOrStory: state.activeBoard.teamOrStories[0].value,
                 } as any;
+
+                //todo: top or bottom?
+                change.rank = state.activeBoard.records.filter(x =>  x.taskStatus == targetState.value && x.rank).map(x => x.rank).reduce((r, x) => Math.min(r,x), 0);
 
                 const records = state.activeBoard.records.concat([change]);
                 const activeBoard = Object.assign({}, state.activeBoard, { records });
@@ -437,6 +441,7 @@ export async function getKanbanBoardReducer() {
                     flags: payload.flags,
                     taskStatus: payload.taskStatus,
                     teamOrStory: payload.teamOrStory,
+                    rank: payload.rank,
                 });
 
                 const records = state.activeBoard.records.slice(0, index).concat(

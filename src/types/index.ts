@@ -44,6 +44,7 @@ export type KanbanRecordDbRecordUserData = {
     boardId: string;
     taskStatus: string;
     teamOrStory: string;
+    rank: number;
 };
 
 export type KanbanRecord = KanbanRecordDbRecordUserData & DocumentWithContents;
@@ -69,6 +70,7 @@ export type KanbanBoardDbRecord = DocumentWithContents & KanbanBoardDbRecordUser
 
 export interface KanbanBoardRecord extends KanbanBoardDbRecord {
     records: KanbanRecord[];
+    //ranks: {[key: string]: number};
 };
 
 export interface KanbanBoardInitialData {

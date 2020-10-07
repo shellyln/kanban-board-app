@@ -18,6 +18,7 @@ export function pickEditableStickyProps(sticky: KanbanRecord) {
         description: sticky.description || '',
         barcode: sticky.barcode || '',
         memo: sticky.memo || '',
+        rank: sticky.rank || 0,
     }));
 }
 

@@ -204,7 +204,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team B",
-        "taskStatus": "Backlog"
+        "taskStatus": "Backlog",
+        "rank": 0
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -219,7 +220,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team B",
-        "taskStatus": "ToDo"
+        "taskStatus": "ToDo",
+        "rank": 1
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -236,7 +238,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team B",
-        "taskStatus": "ToDo"
+        "taskStatus": "ToDo",
+        "rank": 2
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -250,7 +253,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team B",
-        "taskStatus": "InProgress"
+        "taskStatus": "InProgress",
+        "rank": 3
     }, {
         "type": "kanban",
         "dueDate": "2030-01-01",
@@ -268,7 +272,8 @@ export const initialData = {
         "tags": ["PR", "bug", "ok", "NG", "rejected", "pending", "merged", "critical", "high", "moderate", "low", "⭐⭐⭐"],
         "boardId": "",
         "teamOrStory": "Team B",
-        "taskStatus": "Staging"
+        "taskStatus": "Staging",
+        "rank": 4
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -281,7 +286,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team C",
-        "taskStatus": "Backlog"
+        "taskStatus": "Backlog",
+        "rank": 5
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -294,7 +300,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team C",
-        "taskStatus": "Backlog"
+        "taskStatus": "Backlog",
+        "rank": 6
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -307,7 +314,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team C",
-        "taskStatus": "ToDo"
+        "taskStatus": "ToDo",
+        "rank": 7
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -320,7 +328,8 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team C",
-        "taskStatus": "ToDo"
+        "taskStatus": "ToDo",
+        "rank": 8
     }, {
         "type": "kanban",
         "dueDate": "",
@@ -333,7 +342,8 @@ export const initialData = {
         "tags": ["ok", "merged", "v0.0.1", "feature-something", "#1", "#2"],
         "boardId": "",
         "teamOrStory": "Team A",
-        "taskStatus": "Done"
+        "taskStatus": "Done",
+        "rank": 9
     }, {
         "type": "kanban",
         "dueDate": "2030-01-01",
@@ -344,6 +354,7 @@ export const initialData = {
         "tags": [],
         "boardId": "",
         "teamOrStory": "Team B",
-        "taskStatus": "Backlog"
+        "taskStatus": "Backlog",
+        "rank": 10
     }]
 }
