@@ -1,11 +1,12 @@
 version: "3.3"
 services:
   app:
-    image: dpoz/wekan:latest
+    image: dpoz/doable2:latest
     build:
+      context: .
       dockerfile: Dockerfile
       # args:
         # READY_BUILD: build
         # todo: build inside container?
     ports: 
-      4001:4000
+    - 4001:4000
