@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3"
 services:
   doable2-app:
     image: dpoz/doable2:latest
@@ -8,8 +8,10 @@ services:
       # args:
         # READY_BUILD: build
         # todo: build inside container?
+    networks:
+      - doable2-tier
     expose:
-      4000
+      - 4000
 
   sslproxy:
     image: danieldent/nginx-ssl-proxy
