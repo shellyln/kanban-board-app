@@ -20,7 +20,7 @@ services:
     networks:
       - doable2-tier
     depends_on:
-      - doable2
+      - doable2-app
     ports:
       - "8080:80"
       - "8443:443"
