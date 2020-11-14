@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  app:
+    image: dpoz/wekan:latest
+    build:
+      dockerfile: Dockerfile
+      # args:
+        # READY_BUILD: build
+        # todo: build inside container?
+    ports: 
+      4001:4000
