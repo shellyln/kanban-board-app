@@ -32,3 +32,6 @@ yarn-error.log*
 
 # NPM files
 .npmrc
+
+# ESLint cache files
+.eslintcache
