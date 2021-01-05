@@ -75,7 +75,7 @@ const SettingsView: React.FC<SettingsViewProps> = (props) => {
 
     function handleSaveClick() {
         try {
-            const data: AppConfigDbRecord = jsYaml.safeLoad(editorValue) as any;
+            const data: AppConfigDbRecord = jsYaml.load(editorValue) as any;
             if (data) {
                 validateConfigProps(data);
                 props.updateAppConfig(Object.assign({}, data));
@@ -136,7 +136,7 @@ const SettingsView: React.FC<SettingsViewProps> = (props) => {
                 <CodeMirror
                     className={clsx(classes.codemirror)}
                     value={`# App settings\n\n${
-                        jsYaml.safeDump(pickEditableConfigProps(props.appConfig), {lineWidth: 1000})
+                        jsYaml.dump(pickEditableConfigProps(props.appConfig), {lineWidth: 1000})
                     }`}
                     options={{
                         mode: 'yaml',
