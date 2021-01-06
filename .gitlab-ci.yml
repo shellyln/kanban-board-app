@@ -11,8 +11,13 @@ before_script:
 #  script:
 #    - npm run lint
 
-test:node:13:
-  image: node:13
+test:node:15:
+  image: node:15
+  script:
+    - npm run build
+
+# LTS
+test:node:14:
   script:
     - npm run build
 
@@ -24,12 +29,6 @@ test:node:12:
 # LTS
 test:node:10:
   image: node:10
-  script:
-    - npm run build
-
-# LTS
-test:node:8:
-  image: node:8
   script:
     - npm run build
 
