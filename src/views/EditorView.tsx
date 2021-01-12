@@ -77,7 +77,7 @@ const EditorView: React.FC<EditorViewProps> = (props) => {
 
     function handleSaveClick() {
         try {
-            const data: KanbanBoardRecord = jsYaml.safeLoad(editorValue) as any;
+            const data: KanbanBoardRecord = jsYaml.load(editorValue) as any;
             if (data) {
                 validateBoardProps(data);
                 props.editBoardAndStickys(Object.assign({}, data, { _id: props.activeBoard._id }));
@@ -174,7 +174,7 @@ const EditorView: React.FC<EditorViewProps> = (props) => {
                 <CodeMirror
                     className={clsx(classes.codemirror)}
                     value={`# Board settings\n\n${
-                        jsYaml.safeDump(pickEditableBoardProps(props.activeBoard), {lineWidth: 1000})
+                        jsYaml.dump(pickEditableBoardProps(props.activeBoard), {lineWidth: 1000})
                     }`}
                     options={{
                         mode: 'yaml',
